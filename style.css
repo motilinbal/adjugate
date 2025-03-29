@@ -1,0 +1,118 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #5072A7; /* Slate Blue */
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+#app-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    gap: 20px; /* Add space between flex items */
+}
+
+#problem-area {
+    flex: 3; /* Takes up more space */
+    min-width: 400px; /* Ensures readability on smaller flex containers */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#question-display {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #e9f5ff; /* Light blue background */
+    border-left: 5px solid #5072A7;
+    border-radius: 3px;
+}
+
+#answer-area {
+    margin-top: 15px;
+}
+
+#hint-area {
+    flex: 1; /* Takes up less space */
+    min-width: 250px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#hints-container {
+    margin-bottom: 10px;
+    min-height: 50px; /* Reserve some space */
+    border: 1px dashed #ccc;
+    padding: 8px;
+    background-color: #fff;
+}
+
+.hint {
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: #fffacd; /* Lemon chiffon */
+    border: 1px solid #eee8aa; /* Pale goldenrod */
+    border-radius: 3px;
+    font-size: 0.95em;
+}
+
+#navigation {
+    flex-basis: 100%; /* Make navigation take full width */
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #5072A7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #405b85;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#progress-indicator {
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Style for MathJax elements if needed */
+.MathJax_Display {
+    margin: 1em 0 !important;
+}

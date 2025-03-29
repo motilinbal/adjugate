@@ -1,0 +1,2179 @@
+[
+    {
+      "sectionId": "sec-1",
+      "sectionTitle": "Introduction: Defining the Classical Adjoint",
+      "problems": [
+        {
+          "problemId": "prob-1.1",
+          "problemTitle": "Understanding Minors and Cofactors",
+          "questions": [
+            {
+              "questionId": "q-1.1.1",
+              "questionText": "Calculate the minor $M_{23}$ and the cofactor $C_{23}$ of $A$[cite: 4, 5, 6].",
+              "answerType": "computation-minor-cofactor",
+              "hints": [
+                {
+                  "hintId": "h-1.1.1.1",
+                  "hintText": "Recall that the minor $M_{ij}$ is the determinant of the submatrix formed by removing the $i$-th row and $j$-th column of $A$[cite: 5]. Which row and column should you remove for $M_{23}$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-1.1.1.2",
+                  "hintText": "After removing the 2nd row and 3rd column, what $2 \\times 2$ matrix remains? Calculate its determinant. This is $M_{23}$[cite: 5].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-1.1.1.3",
+                  "hintText": "The cofactor $C_{ij}$ is defined as $C_{ij} = (-1)^{i+j} M_{ij}$[cite: 6]. Use the value of $M_{23}$ you found and the appropriate sign based on $i=2, j=3$ to find $C_{23}$[cite: 6, 11].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-1.1.2",
+              "questionText": "Explain why the entry in the $i$-th row and $j$-th column of $\\adj(A)$ is $C_{ji}$, not $C_{ij}$[cite: 8, 9, 10].",
+              "answerType": "proof-explanation",
+              "hints": [
+                {
+                  "hintId": "h-1.1.2.1",
+                  "hintText": "Start with the definition of the cofactor matrix $C$, whose $(i, j)$-th entry is $C_{ij}$[cite: 7].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-1.1.2.2",
+                  "hintText": "How is the adjugate matrix $\\adj(A)$ formally defined in terms of the cofactor matrix $C$? [cite: 8]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-1.1.2.3",
+                  "hintText": "What operation transforms a matrix $M$ such that its $(i, j)$-th entry becomes the $(j, i)$-th entry of the original matrix? How does this apply to the relationship between $C$ and $\\adj(A)$? [cite: 8, 9]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-1.1.2.4",
+                  "hintText": "Consider the fundamental identity $A \\cdot \\adj(A) = \\detm(A) I$[cite: 29]. Think about the dot product of the $i$-th row of $A$ with the $j$-th column of $\\adj(A)$. What elements from the definition of $\\adj(A)$ does this involve? [cite: 30, 31, 32] Does using $C_{ji}$ in the $(i, j)$ position of $\\adj(A)$ lead to the correct identity?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-2",
+      "sectionTitle": "Basic Computation of the Adjoint",
+      "problems": [
+        {
+          "problemId": "prob-2.1",
+          "problemTitle": "Computing 2x2 Adjoints",
+          "questions": [
+            {
+              "questionId": "q-2.1.1",
+              "questionText": "Let $A = \\begin{pmatrix} \\cos \\theta & -\\sin \\theta \\\\ \\sin \\theta & \\cos \\theta \\end{pmatrix}$. Compute $\\adj(A)$[cite: 12, 15, 16]. What does the result represent geometrically?",
+              "answerType": "computation-adjoint-2x2",
+              "hints": [
+                {
+                  "hintId": "h-2.1.1.1",
+                  "hintText": "Recall the shortcut for finding the adjugate of a $2 \\times 2$ matrix $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$[cite: 16]. What happens to the diagonal elements? What happens to the off-diagonal elements?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.1.1.2",
+                  "hintText": "Apply the shortcut to the given matrix $A$ with $a = \\cos \\theta$, $b = -\\sin \\theta$, $c = \\sin \\theta$, $d = \\cos \\theta$[cite: 15, 16].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.1.1.3",
+                  "hintText": "Compare the resulting matrix $\\adj(A)$ with the original matrix $A$ and its transpose $A^T$. What transformation does $A$ represent? What transformation does $\\adj(A)$ represent? (Think about rotations).",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.1.1.4",
+                  "hintText": "Consider the determinant of $A$. How does $\\adj(A)$ relate to $A^{-1}$ when $A$ represents a rotation? [cite: 38, 130]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-2.1.2",
+              "questionText": "Verify the formula $\\adj(A) = \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$ for $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ by explicitly calculating the cofactor matrix $C$ and transposing it[cite: 13, 14, 15].",
+              "answerType": "proof-verification",
+              "hints": [
+                {
+                  "hintId": "h-2.1.2.1",
+                  "hintText": "Calculate the four minors $M_{11}, M_{12}, M_{21}, M_{22}$[cite: 13]. Remember $M_{ij}$ is the determinant of the $1 \\times 1$ matrix obtained by removing row $i$ and column $j$. The determinant of $(x)$ is just $x$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.1.2.2",
+                  "hintText": "Calculate the four cofactors $C_{11}, C_{12}, C_{21}, C_{22}$ using $C_{ij} = (-1)^{i+j} M_{ij}$ and form the cofactor matrix $C$[cite: 6, 14]. Pay attention to the signs!",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.1.2.3",
+                  "hintText": "Find the transpose of the cofactor matrix $C$. Does it match the shortcut formula for $\\adj(A)$? [cite: 8, 15]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        },
+        {
+          "problemId": "prob-2.2",
+          "problemTitle": "Computing a 3x3 Adjoint",
+          "questions": [
+            {
+              "questionId": "q-2.2.1",
+              "questionText": "Calculate $\\adj(A)$ for $A = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 2 & 0 \\\\ -1 & 0 & 1 \\end{pmatrix}$[cite: 20, 21, 22, 23, 24].",
+              "answerType": "computation-adjoint-3x3",
+              "hints": [
+                {
+                  "hintId": "h-2.2.1.1",
+                  "hintText": "First, find the $3 \\times 3$ matrix of minors. For each element $A_{ij}$, calculate $M_{ij}$ by finding the determinant of the $2 \\times 2$ submatrix obtained by removing row $i$ and column $j$[cite: 20, 21]. For example, $M_{11} = \\detm \\begin{pmatrix} 2 & 0 \\\\ 0 & 1 \\end{pmatrix}$. Calculate all nine minors[cite: 22].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.2.1.2",
+                  "hintText": "Next, find the cofactor matrix $C$. Apply the checkerboard pattern of signs $+ - +, - + -, + - +$ to the matrix of minors, or equivalently, compute $C_{ij} = (-1)^{i+j} M_{ij}$ for each entry[cite: 22, 23].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.2.1.3",
+                  "hintText": "Finally, the adjugate matrix $\\adj(A)$ is the transpose of the cofactor matrix $C$[cite: 24]. Swap the rows and columns of $C$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.2.1.4",
+                  "hintText": "Double-check your calculation by computing $A \\cdot \\adj(A)$. Does it equal $\\detm(A) I_3$? [cite: 29] First compute $\\detm(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        },
+        {
+          "problemId": "prob-2.3",
+          "problemTitle": "Adjoint of a Singular Matrix",
+          "questions": [
+            {
+              "questionId": "q-2.3.1",
+              "questionText": "Let $A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9 \\end{pmatrix}$[cite: 25]. Calculate $\\adj(A)$. What do you notice about the columns (or rows) of $\\adj(A)$? Relate this to the determinant and rank of $A$.",
+              "answerType": "computation-adjoint-singular",
+              "hints": [
+                {
+                  "hintId": "h-2.3.1.1",
+                  "hintText": "Follow the three steps: Calculate the matrix of minors, apply signs to get the cofactor matrix, and transpose to get the adjugate[cite: 20, 22, 24].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.3.1.2",
+                  "hintText": "Notice that calculating the minors might yield some zeros or simple relationships. For instance, $M_{11} = 5 \\times 9 - 6 \\times 8 = 45 - 48 = -3$. $M_{12} = 4 \\times 9 - 6 \\times 7 = 36 - 42 = -6$. $M_{13} = 4 \\times 8 - 5 \\times 7 = 32 - 35 = -3$. Continue for all nine minors.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.3.1.3",
+                  "hintText": "After finding $\\adj(A)$, observe its columns. Are they related? Are they scalar multiples of each other? [cite: 85]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.3.1.4",
+                  "hintText": "Calculate $\\detm(A)$. You can use cofactor expansion or notice that the columns (or rows) are linearly dependent (e.g., Col2 - Col1 = Col3 - Col2). What does $\\detm(A)=0$ imply about $A \\cdot \\adj(A)$? [cite: 29, 39]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-2.3.1.5",
+                  "hintText": " What is the rank of $A$? (It's not 3 since $\\detm(A)=0$. Is it 2 or 1?)[cite: 81]. How does the rank of $A$ relate to the rank of $\\adj(A)$? Does your calculated $\\adj(A)$ have the expected rank? [cite: 80, 81, 82]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-3",
+      "sectionTitle": "Fundamental Properties and Theorems",
+      "problems": [
+        {
+          "problemId": "prob-3.1",
+          "problemTitle": "Applying the Core Identity",
+          "questions": [
+            {
+              "questionId": "q-3.1.1",
+              "questionText": "Let $A$ be a $3 \\times 3$ matrix with $\\detm(A) = 5$. Without calculating $A$ or $\\adj(A)$ explicitly, find the matrix product $A \\cdot \\adj(A)$.",
+              "answerType": "computation-identity",
+              "hints": [
+                {
+                  "hintId": "h-3.1.1.1",
+                  "hintText": "Recall the fundamental identity relating $A$, $\\adj(A)$, and $\\detm(A)$[cite: 29].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.1.1.2",
+                  "hintText": "The identity is $A \\cdot \\adj(A) = \\detm(A) I_n$[cite: 29]. What is $n$ in this case? What is $I_n$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.1.1.3",
+                  "hintText": "Substitute the given value of $\\detm(A)$ and the appropriate identity matrix $I_n$ into the formula.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-3.1.2",
+              "questionText": "Suppose $A$ is an $n \\times n$ matrix such that $A \\cdot \\adj(A) = \\begin{pmatrix} -2 & 0 \\\\ 0 & -2 \\end{pmatrix}$. What is $\\detm(A)$? Is $A$ invertible? [cite: 29, 38]",
+              "answerType": "deduction-identity",
+              "hints": [
+                {
+                  "hintId": "h-3.1.2.1",
+                  "hintText": " Compare the given matrix product with the general form $A \\cdot \\adj(A) = \\detm(A) I_n$[cite: 29]. What must $\\detm(A)$ be? What is $n$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.1.2.2",
+                  "hintText": " A matrix is invertible if and only if its determinant is non-zero[cite: 38]. Based on the value you found for $\\detm(A)$, can you conclude whether $A$ is invertible?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        },
+        {
+          "problemId": "prob-3.2",
+          "problemTitle": "Adjoint and Inverse",
+          "questions": [
+            {
+              "questionId": "q-3.2.1",
+              "questionText": "Given $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$. Find $A^{-1}$ using the formula involving the adjugate[cite: 38].",
+              "answerType": "computation-inverse-adjugate",
+              "hints": [
+                {
+                  "hintId": "h-3.2.1.1",
+                  "hintText": "The formula is $A^{-1} = \\frac{1}{\\detm(A)} \\adj(A)$, provided $\\detm(A) \\neq 0$[cite: 38]. First, calculate $\\detm(A)$. Is it non-zero?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.1.2",
+                  "hintText": "Next, calculate $\\adj(A)$ using the shortcut for $2 \\times 2$ matrices[cite: 16].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.1.3",
+                  "hintText": "Substitute $\\detm(A)$ and $\\adj(A)$ into the inverse formula.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-3.2.2",
+              "questionText": "Let $A$ be an invertible $n \\times n$ matrix. Express $\\adj(A)$ in terms of $A^{-1}$ and $\\detm(A)$[cite: 38, 41]. Use this to argue why $\\adj(A)$ must also be invertible.",
+              "answerType": "proof-invertibility",
+              "hints": [
+                {
+                  "hintId": "h-3.2.2.1",
+                  "hintText": "Start with the formula for the inverse: $A^{-1} = \\frac{1}{\\detm(A)} \\adj(A)$[cite: 38].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.2.2",
+                  "hintText": "Rearrange the formula algebraically to solve for $\\adj(A)$. Remember $\\detm(A)$ is just a non-zero scalar since $A$ is invertible.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.2.3",
+                  "hintText": "You should arrive at $\\adj(A) = \\detm(A) A^{-1}$[cite: 41]. Since $A$ is invertible, $A^{-1}$ exists. Is the product of a non-zero scalar and an invertible matrix also invertible? Why?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.2.4",
+                  "hintText": " Alternatively, consider the determinant of $\\adj(A)$. We know $\\detm(\\adj(A)) = (\\detm A)^{n-1}$[cite: 57]. If $A$ is invertible, what does this tell you about $\\detm(\\adj(A))$ (assuming $n>1$)? [cite: 40]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-3.2.3",
+              "questionText": "If $A$ is a singular $3 \\times 3$ matrix, can $\\adj(A)$ be invertible? Justify your answer using the relationship between the rank of $A$ and the rank of $\\adj(A)$[cite: 39, 40, 42, 80, 81, 82]. Consider the special case $n=1$ separately[cite: 44].",
+              "answerType": "proof-rank-invertibility",
+              "hints": [
+                {
+                  "hintId": "h-3.2.3.1",
+                  "hintText": "What does it mean for $A$ to be singular? [cite: 39] What are the possible ranks for a singular $3 \\times 3$ matrix $A$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.3.2",
+                  "hintText": "Recall the rules relating $\\rank(A)$ and $\\rank(\\adj(A))$ for an $n \\times n$ matrix[cite: 80]: If $\\rank(A) = n$, then $\\rank(\\adj(A)) = n$. If $\\rank(A) = n-1$, then $\\rank(\\adj(A)) = 1$. If $\\rank(A) \\leq n-2$, then $\\rank(\\adj(A)) = 0$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.3.3",
+                  "hintText": "Apply these rules for $n=3$ and the possible ranks of the singular matrix $A$. What are the possible ranks for $\\adj(A)$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.3.4",
+                  "hintText": "For a matrix to be invertible, what must its rank be? Can $\\adj(A)$ have this rank if $A$ is singular and $n=3$? [cite: 40]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-3.2.3.5",
+                  "hintText": " What happens in the $n=1$ case? If $A=(0)$, what is $\\adj(A)$? Is it invertible? [cite: 44, 141]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-4",
+      "sectionTitle": "Matrix Identities Involving the Adjoint",
+      "problems": [
+        {
+          "problemId": "prob-4.1",
+          "problemTitle": "Exploring Adjoint Identities",
+          "questions": [
+            {
+              "questionId": "q-4.1.1",
+              "questionText": "Prove that $\\adj(A^T) = (\\adj(A))^T$ for any $n \\times n$ matrix $A$[cite: 45].",
+              "answerType": "proof-identity-transpose",
+              "hints": [
+                {
+                  "hintId": "h-4.1.1.1",
+                  "hintText": "Let $B = A^T$. We want to show $\\adj(B) = (\\adj(A))^T$. Let's look at the $(i, j)$-th entry of each side. The $(i, j)$-th entry of $(\\adj(A))^T$ is the $(j, i)$-th entry of $\\adj(A)$. What is this entry by definition? [cite: 9]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.1.2",
+                  "hintText": "The $(j, i)$-th entry of $\\adj(A)$ is $C_{ij}(A) = (-1)^{i+j} M_{ij}(A)$, where the cofactor and minor are calculated from $A$[cite: 9].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.1.3",
+                  "hintText": "Now consider the $(i, j)$-th entry of $\\adj(B) = \\adj(A^T)$. By definition, this is $C_{ji}(B) = (-1)^{j+i} M_{ji}(B)$, where the cofactor and minor are calculated from $B=A^T$[cite: 9].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.1.4",
+                  "hintText": "How does the minor $M_{ji}(B)$ relate to a minor of $A$? Recall that $B=A^T$. $M_{ji}(B)$ is the determinant of the matrix obtained by removing row $j$ and column $i$ from $A^T$[cite: 46]. How does this submatrix relate to the submatrix used to calculate $M_{ij}(A)$ (obtained by removing row $i$ and column $j$ from $A$)? [cite: 46]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.1.5",
+                  "hintText": "Remember that $\\detm(M) = \\detm(M^T)$[cite: 46]. Use this to show that $M_{ji}(B) = M_{ij}(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.1.6",
+                  "hintText": "Substitute $M_{ji}(B) = M_{ij}(A)$ into the expression for the $(i, j)$-th entry of $\\adj(B)$ and compare it to the expression for the $(i, j)$-th entry of $(\\adj(A))^T$. Are they equal? [cite: 47]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-4.1.2",
+              "questionText": "Let $A$ and $B$ be $3 \\times 3$ matrices with $\\detm(A) = 2$ and $\\detm(B) = -3$. Calculate $\\detm(\\adj(AB))$.",
+              "answerType": "computation-identity-determinant",
+              "hints": [
+                {
+                  "hintId": "h-4.1.2.1",
+                  "hintText": "We need $\\detm(\\adj(M))$ where $M=AB$. Recall the identity relating the determinant of the adjugate to the determinant of the original matrix: $\\detm(\\adj(M)) = (\\detm M)^{n-1}$[cite: 57]. What is $n$ here?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.2.2",
+                  "hintText": "First, find $\\detm(M) = \\detm(AB)$. How does the determinant of a product relate to the determinants of the factors? [cite: 51]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.2.3",
+                  "hintText": "Calculate $\\detm(AB)$ using the given determinants of $A$ and $B$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.2.4",
+                  "hintText": "Now substitute this value for $\\detm(M)$ and $n=3$ into the formula $\\detm(\\adj(M)) = (\\detm M)^{n-1}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.2.5",
+                  "hintText": "Alternatively, use $\\adj(AB) = \\adj(B)\\adj(A)$[cite: 49]. Then $\\detm(\\adj(AB)) = \\detm(\\adj(B)\\adj(A))$. How does the determinant behave with products?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.2.6",
+                  "hintText": "$\\detm(\\adj(B)\\adj(A)) = \\detm(\\adj(B)) \\detm(\\adj(A))$. Now use $\\detm(\\adj(X)) = (\\detm X)^{n-1}$ for $X=A$ and $X=B$[cite: 57]. Does this give the same result?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-4.1.3",
+              "questionText": "Let $A$ be a $4 \\times 4$ matrix and $c=2$. If $\\adj(A) = M$, what is $\\adj(cA)$ in terms of $M$ and $c$? [cite: 54]",
+              "answerType": "computation-identity-scalar",
+              "hints": [
+                {
+                  "hintId": "h-4.1.3.1",
+                  "hintText": "Recall the identity for the adjugate of a scalar multiple: $\\adj(cA) = c^{n-1} \\adj(A)$[cite: 54].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.3.2",
+                  "hintText": "Identify the values of $c$ and $n$ in this problem.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.3.3",
+                  "hintText": "Substitute these values and the fact that $\\adj(A)=M$ into the identity.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-4.1.4",
+              "questionText": "If $A$ is a $3 \\times 3$ matrix with $\\detm(A) = 4$, find $\\detm(\\adj(\\adj(A)))$.",
+              "answerType": "computation-identity-double-adj",
+              "hints": [
+                {
+                  "hintId": "h-4.1.4.1",
+                  "hintText": "Let $B = \\adj(A)$. We want to find $\\detm(\\adj(B))$. Use the identity $\\detm(\\adj(B)) = (\\detm B)^{n-1}$[cite: 57]. What is $n$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.4.2",
+                  "hintText": "We need $\\detm(B) = \\detm(\\adj(A))$. Use the same identity again: $\\detm(\\adj(A)) = (\\detm A)^{n-1}$[cite: 57]. Calculate this value using the given $\\detm(A)$ and $n$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.4.3",
+                  "hintText": "Substitute the value of $\\detm(B)$ you just found back into the expression from the first hint: $\\detm(\\adj(B)) = (\\detm B)^{n-1}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.4.4",
+                  "hintText": "Alternatively, use the identity $\\adj(\\adj(A)) = (\\detm A)^{n-2} A$ for $n \\ge 2$[cite: 67].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.4.5",
+                  "hintText": " Take the determinant of both sides of $\\adj(\\adj(A)) = (\\detm A)^{n-2} A$. Remember that $\\detm(kA) = k^n \\detm(A)$ for a scalar $k$. Let $k = (\\detm A)^{n-2}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.4.6",
+                  "hintText": " So, $\\detm(\\adj(\\adj(A))) = \\detm( (\\detm A)^{n-2} A ) = ((\\detm A)^{n-2})^n \\detm(A)$. Simplify this expression using $n=3$ and $\\detm(A)=4$. Does it match the previous result?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-4.1.5",
+              "questionText": "Let $A$ be an invertible $n \\times n$ matrix. Show that $(\\adj(A))^{-1} = \\adj(A^{-1})$.",
+              "answerType": "proof-identity-inverse",
+              "hints": [
+                {
+                  "hintId": "h-4.1.5.1",
+                  "hintText": "We want to show that $\\adj(A) \\cdot \\adj(A^{-1}) = I$. Recall the identity $\\adj(XY) = \\adj(Y)\\adj(X)$[cite: 49]. Apply this with $X=A$ and $Y=A^{-1}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.5.2",
+                  "hintText": "What is $XY = A A^{-1}$? What is $\\adj(A A^{-1})$? [cite: 141]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.5.3",
+                  "hintText": "So we have $\\adj(A^{-1})\\adj(A) = \\adj(I) = I$[cite: 49, 141]. Does this directly show $(\\adj(A))^{-1} = \\adj(A^{-1})$? Yes, by the definition of an inverse.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.5.4",
+                  "hintText": "Alternatively, start with $A^{-1} = \\frac{1}{\\detm(A)} \\adj(A)$[cite: 38]. And $\\adj(A^{-1}) = \\detm(A^{-1}) (A^{-1})^{-1}$[cite: 41].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.5.5",
+                  "hintText": "We know $\\detm(A^{-1}) = 1/\\detm(A)$ and $(A^{-1})^{-1} = A$. Substitute these into the second equation: $\\adj(A^{-1}) = \\frac{1}{\\detm(A)} A$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.5.6",
+                  "hintText": "Now, let's find $(\\adj(A))^{-1}$. We know $\\adj(A) = \\detm(A) A^{-1}$[cite: 41]. So $(\\adj(A))^{-1} = (\\detm(A) A^{-1})^{-1}$. How does the inverse distribute over a scalar multiple and the matrix?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.5.7",
+                  "hintText": "$(\\detm(A) A^{-1})^{-1} = (\\detm A)^{-1} (A^{-1})^{-1} = \\frac{1}{\\detm A} A$. Compare this with the expression for $\\adj(A^{-1})$. Are they equal?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-4.1.5.8",
+                  "hintText": " Another way: Use the identity $\\adj(A^k) = (\\adj(A))^k$ [cite: 76] with $k=-1$. Does this identity hold for negative integers if $A$ is invertible? Assume it does for a moment.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+      {
+      "sectionId": "sec-5",
+      "sectionTitle": "Relationship with Rank",
+      "problems": [
+        {
+          "problemId": "prob-5.1",
+          "problemTitle": "Rank Relationships",
+          "questions": [
+            {
+              "questionId": "q-5.1.1",
+              "questionText": "Let $A$ be a $5 \\times 5$ matrix. Determine $\\rank(\\adj(A))$ in each of the following cases: (a) $\\rank(A) = 5$ (b) $\\rank(A) = 4$ (c) $\\rank(A) = 3$ (d) $\\rank(A) = 0$ [cite: 80, 81, 82]",
+              "answerType": "deduction-rank",
+              "hints": [
+                {
+                  "hintId": "h-5.1.1.1",
+                  "hintText": "Recall the rules governing the relationship between $\\rank(A)$ and $\\rank(\\adj(A))$ for an $n \\times n$ matrix[cite: 80]. What is $n$ here?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.1.2",
+                  "hintText": "Case (a): If $\\rank(A) = n$, what is $\\rank(\\adj(A))$? [cite: 80]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.1.3",
+                  "hintText": "Case (b): If $\\rank(A) = n-1$, what is $\\rank(\\adj(A))$? [cite: 81]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.1.4",
+                  "hintText": "Case (c): If $\\rank(A) \\le n-2$, what is $\\rank(\\adj(A))$? Does $\\rank(A)=3$ satisfy this condition for $n=5$? [cite: 82]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.1.5",
+                  "hintText": "Case (d): If $A$ is the zero matrix (rank 0), what is $\\adj(A)$ (assuming $n>1$)? What is its rank? [cite: 82, 140] Does this fit the general rule for $\\rank(A) \\le n-2$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-5.1.2",
+              "questionText": "Let $A$ be a $3 \\times 3$ matrix with $\\rank(A)=2$. Let $\\mathbf{v}$ be a non-zero vector such that $A\\mathbf{v} = \\mathbf{0}$. Explain why every column of $\\adj(A)$ must be a scalar multiple of $\\mathbf{v}$[cite: 83, 84, 85, 86].",
+              "answerType": "proof-rank-nullspace",
+              "hints": [
+                {
+                  "hintId": "h-5.1.2.1",
+                  "hintText": "If $\\rank(A)=2$ for a $3 \\times 3$ matrix, what is $\\detm(A)$? [cite: 81, 83]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.2.2",
+                  "hintText": "What does the fundamental identity $A \\cdot \\adj(A) = \\detm(A) I$ become in this case? [cite: 39, 83]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.2.3",
+                  "hintText": "Let $\\mathbf{c}_j$ be the $j$-th column of $\\adj(A)$. Consider the product $A \\cdot \\adj(A)$. The $j$-th column of this product is $A \\mathbf{c}_j$. What does the result from the previous hint tell you about $A \\mathbf{c}_j$? [cite: 84]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.2.4",
+                  "hintText": "If $A \\mathbf{c}_j = \\mathbf{0}$, what space does the vector $\\mathbf{c}_j$ belong to? [cite: 84]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.2.5",
+                  "hintText": "What is the dimension of the nullspace (kernel) of $A$ if $A$ is $3 \\times 3$ and $\\rank(A)=2$? (Rank-Nullity Theorem)[cite: 85].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.2.6",
+                  "hintText": "We are given that $A\\mathbf{v} = \\mathbf{0}$ with $\\mathbf{v} \\neq \\mathbf{0}$. What does this mean about $\\mathbf{v}$ in relation to the nullspace? Since the nullspace has dimension 1, how must any other vector in the nullspace (like the columns $\\mathbf{c}_j$) relate to $\\mathbf{v}$? [cite: 85, 86]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-5.1.2.7",
+                  "hintText": " Also, what is the rank of $\\adj(A)$ when $\\rank(A)=n-1=2$?[cite: 81]. How does the rank relate to the columns spanning only a 1D space (the nullspace)? [cite: 86]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-6",
+      "sectionTitle": "Applications",
+      "problems": [
+        {
+          "problemId": "prob-6.1",
+          "problemTitle": "Inverse and System Solving",
+          "questions": [
+            {
+              "questionId": "q-6.1.1",
+              "questionText": "Find the inverse of $A = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 2 & 0 \\\\ -1 & 0 & 1 \\end{pmatrix}$ using the adjugate method[cite: 87, 88]. (You may have computed $\\adj(A)$ in Problem 2.2.1).",
+              "answerType": "computation-inverse-adjugate",
+              "hints": [
+                {
+                  "hintId": "h-6.1.1.1",
+                  "hintText": "First, compute $\\detm(A)$. A cofactor expansion along the second row might be efficient here.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-6.1.1.2",
+                  "hintText": "Retrieve or re-compute $\\adj(A)$ using the standard procedure (minors, cofactors, transpose)[cite: 20, 24].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-6.1.1.3",
+                  "hintText": "Apply the formula $A^{-1} = \\frac{1}{\\detm(A)} \\adj(A)$[cite: 38, 87].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-6.1.1.4",
+                  "hintText": "Verify your result by computing $A A^{-1}$. Should it equal $I_3$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-6.1.2",
+              "questionText": "Consider the system $A\\mathbf{x} = \\mathbf{b}$ where $A$ is an $n \\times n$ singular matrix ($\\detm(A)=0$). Show that if a solution $\\mathbf{x}$ exists, it must satisfy $\\adj(A) \\mathbf{b} = \\mathbf{0}$[cite: 97, 98, 99, 100]. Is the converse true (if $\\adj(A) \\mathbf{b} = \\mathbf{0}$, does a solution necessarily exist)?",
+              "answerType": "proof-system-consistency",
+              "hints": [
+                {
+                  "hintId": "h-6.1.2.1",
+                  "hintText": "Start with the assumption that a solution $\\mathbf{x}$ exists, so $A\\mathbf{x} = \\mathbf{b}$ holds[cite: 97].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-6.1.2.2",
+                  "hintText": "Multiply both sides of the equation $A\\mathbf{x} = \\mathbf{b}$ on the left by $\\adj(A)$[cite: 98].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-6.1.2.3",
+                  "hintText": "Use the fundamental identity $\\adj(A) A = \\detm(A) I_n$[cite: 29]. What does this become since $A$ is singular? [cite: 39, 99]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-6.1.2.4",
+                  "hintText": "Substitute the result from the previous hint into the equation from Hint 2. What condition must $\\adj(A)\\mathbf{b}$ satisfy? [cite: 100]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-6.1.2.5",
+                  "hintText": "For the converse: $\\adj(A)\\mathbf{b} = \\mathbf{0}$ is a necessary condition for consistency[cite: 100]. Does it guarantee a solution exists? Think about the relationship between $\\mathbf{b}$ and the column space of $A$. The condition $\\adj(A)\\mathbf{b} = \\mathbf{0}$ implies that $\\mathbf{b}$ is orthogonal to the rows of $\\adj(A)$. How do the rows of $\\adj(A)$ relate to the nullspace of $A^T$? What is the relationship between the nullspace of $A^T$ and the column space of $A$ (Fundamental Theorem of Linear Algebra)? [cite: 102]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-6.1.2.6",
+                  "hintText": " Consider $A = \\begin{pmatrix} 1 & 1 \\\\ 1 & 1 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$. Calculate $\\adj(A)$ and $\\adj(A)\\mathbf{b}$. Does a solution to $A\\mathbf{x} = \\mathbf{b}$ exist? (The column space of A is spanned by $\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$).",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-7",
+      "sectionTitle": "Properties Under Transformations and Specific Matrix Types",
+      "problems": [
+        {
+          "problemId": "prob-7.1",
+          "problemTitle": "Adjoints of Special Matrices",
+          "questions": [
+            {
+              "questionId": "q-7.1.1",
+              "questionText": "Let $A$ be a $3 \\times 3$ orthogonal matrix with $\\detm(A)=-1$. Find a simple expression for $\\adj(A)$ in terms of $A$ or $A^T$[cite: 130, 131].",
+              "answerType": "deduction-orthogonal",
+              "hints": [
+                {
+                  "hintId": "h-7.1.1.1",
+                  "hintText": "What does it mean for $A$ to be orthogonal? What is the relationship between $A^{-1}$ and $A^T$? [cite: 130]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.1.2",
+                  "hintText": "Recall the formula relating the adjugate and the inverse for an invertible matrix: $\\adj(A) = \\detm(A) A^{-1}$[cite: 128].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.1.3",
+                  "hintText": "Substitute the relationship between $A^{-1}$ and $A^T$ (from Hint 1) and the given value of $\\detm(A)$ into the formula from Hint 2[cite: 131].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-7.1.2",
+              "questionText": "Prove that if $A$ is symmetric ($A^T=A$), then $\\adj(A)$ is also symmetric[cite: 132].",
+              "answerType": "proof-symmetric",
+              "hints": [
+                {
+                  "hintId": "h-7.1.2.1",
+                  "hintText": "We want to show that $(\\adj(A))^T = \\adj(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.2.2",
+                  "hintText": "Recall the identity relating the adjugate of a transpose and the transpose of the adjugate: $(\\adj(A))^T = \\adj(A^T)$[cite: 45, 132].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.2.3",
+                  "hintText": "Since $A$ is symmetric, what is $A^T$ equal to? Substitute this into the right side of the identity from Hint 2. Does this prove the claim? [cite: 132]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-7.1.3",
+              "questionText": "Let $A$ be an $n \\times n$ skew-symmetric matrix ($A^T = -A$). Determine whether $\\adj(A)$ is symmetric or skew-symmetric, considering whether $n$ is odd or even[cite: 133, 134, 135, 136, 137].",
+              "answerType": "proof-skew-symmetric",
+              "hints": [
+                {
+                  "hintId": "h-7.1.3.1",
+                  "hintText": "We need to examine $(\\adj(A))^T$. Start with the identity $(\\adj(A))^T = \\adj(A^T)$[cite: 45, 133].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.3.2",
+                  "hintText": "Since $A$ is skew-symmetric, substitute $A^T = -A$ into the identity: $(\\adj(A))^T = \\adj(-A)$[cite: 133].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.3.3",
+                  "hintText": "Recall the identity for the adjugate of a scalar multiple: $\\adj(cA) = c^{n-1} \\adj(A)$[cite: 54]. Apply this with $c=-1$: $\\adj(-A) = (-1)^{n-1} \\adj(A)$[cite: 133].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.3.4",
+                  "hintText": "Combine the results: $(\\adj(A))^T = (-1)^{n-1} \\adj(A)$[cite: 133].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.3.5",
+                  "hintText": "Case 1: $n$ is odd. What is $n-1$? What is $(-1)^{n-1}$? What does the equation from Hint 4 become? Does this mean $\\adj(A)$ is symmetric or skew-symmetric? [cite: 135, 137]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.3.6",
+                  "hintText": "Case 2: $n$ is even. What is $n-1$? What is $(-1)^{n-1}$? What does the equation from Hint 4 become? Does this mean $\\adj(A)$ is symmetric or skew-symmetric? [cite: 136, 137]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-7.1.4",
+              "questionText": "Let $D = \\operatorname{diag}(d_1, d_2, \\dots, d_n)$. Describe the matrix $\\adj(D)$[cite: 138, 139, 140]. What is $\\adj(D)$ if one of the $d_i$ is zero? What if at least two $d_i$'s are zero (assume $n > 1$)?",
+              "answerType": "deduction-diagonal",
+              "hints": [
+                {
+                  "hintId": "h-7.1.4.1",
+                  "hintText": "Consider the $(i, j)$-th entry of $\\adj(D)$, which is $C_{ji}(D) = (-1)^{j+i} M_{ji}(D)$[cite: 9].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.4.2",
+                  "hintText": "What is the minor $M_{ji}(D)$ if $j \\neq i$? The submatrix used to calculate $M_{ji}(D)$ is obtained by removing row $j$ and column $i$ from the diagonal matrix $D$. Does this submatrix still have zeros everywhere off the main diagonal? Does it have a zero on its main diagonal? What is its determinant? [cite: 138, 305]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.4.3",
+                  "hintText": " This implies that $C_{ji}(D) = 0$ if $j \\neq i$. So, $\\adj(D)$ must be a diagonal matrix[cite: 138].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.4.4",
+                  "hintText": "Now consider the diagonal entries $(i, i)$ of $\\adj(D)$. These are $C_{ii}(D) = (-1)^{i+i} M_{ii}(D) = M_{ii}(D)$. What is the minor $M_{ii}(D)$? It's the determinant of the diagonal matrix formed by removing row $i$ and column $i$ from $D$[cite: 139].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.4.5",
+                  "hintText": "The matrix for $M_{ii}(D)$ is $\\operatorname{diag}(d_1, \\dots, d_{i-1}, d_{i+1}, \\dots, d_n)$. What is its determinant? [cite: 139] This is the $i$-th diagonal entry of $\\adj(D)$[cite: 140].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.4.6",
+                  "hintText": "If exactly one $d_k=0$. Consider the $k$-th diagonal entry of $\\adj(D)$. It's the product $\\prod_{j \\neq k} d_j$. Is this zero or non-zero? Now consider any other diagonal entry $i \\neq k$. Its value is $\\prod_{j \\neq i} d_j$. Does this product include $d_k$? What is its value? What does $\\adj(D)$ look like?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-7.1.4.7",
+                  "hintText": " If at least two entries, say $d_k=0$ and $d_l=0$ ($k \\neq l$), consider any diagonal entry $\\prod_{j \\neq i} d_j$ of $\\adj(D)$. Can this product ever be non-zero? (Think about whether $d_k$ or $d_l$ must be included in the product). What is $\\adj(D)$ in this case? [cite: 82]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-8",
+      "sectionTitle": "Conceptual, Geometric, and Advanced Topics",
+      "problems": [
+        {
+          "problemId": "prob-8.1",
+          "problemTitle": "Properties and Interpretations",
+          "questions": [
+            {
+              "questionId": "q-8.1.1",
+              "questionText": "Explain why the mapping $F: \\R^{n \\times n} \\to \\R^{n \\times n}$ defined by $F(A) = \\adj(A)$ is a continuous function[cite: 142, 143, 144, 145].",
+              "answerType": "proof-continuity",
+              "hints": [
+                {
+                  "hintId": "h-8.1.1.1",
+                  "hintText": "What are the entries of the matrix $\\adj(A)$? They are cofactors $C_{ji}(A)$[cite: 9].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.1.2",
+                  "hintText": "How is a cofactor $C_{ji}(A)$ defined? It involves a minor $M_{ji}(A)$ and a sign[cite: 6].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.1.3",
+                  "hintText": "How is a minor $M_{ji}(A)$ defined? It's the determinant of a submatrix of $A$[cite: 5].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.1.4",
+                  "hintText": "Is the determinant function a polynomial function of the entries of a matrix? [cite: 144]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.1.5",
+                  "hintText": "Therefore, are the minors polynomials in the entries of $A$? Are the cofactors? Are the entries of $\\adj(A)$? [cite: 144]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.1.6",
+                  "hintText": "Are polynomial functions continuous? If each entry of $F(A)$ is a continuous function of the entries of $A$, what does that imply about the continuity of the matrix function $F(A)$? [cite: 145]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-8.1.2",
+              "questionText": "Let $A = \\begin{pmatrix} \\mathbf{a}_1 & \\mathbf{a}_2 & \\mathbf{a}_3 \\end{pmatrix}$ be a $3 \\times 3$ matrix with columns $\\mathbf{a}_1, \\mathbf{a}_2, \\mathbf{a}_3 \\in \\R^3$. Verify the formula stating that the *rows* of $\\adj(A)$ are given by $(\\mathbf{a}_2 \\times \\mathbf{a}_3)^T$, $(\\mathbf{a}_3 \\times \\mathbf{a}_1)^T$, and $(\\mathbf{a}_1 \\times \\mathbf{a}_2)^T$[cite: 174, 175]. \\textit{(Note: The source document discussion is slightly confusing, this formulation aligns with $A \\adj(A) = \\det(A)I$)}.",
+              "answerType": "proof-verification-cross-product",
+              "hints": [
+                {
+                  "hintId": "h-8.1.2.1",
+                  "hintText": "Let $A = \\begin{pmatrix} a_{11} & a_{12} & a_{13} \\\\ a_{21} & a_{22} & a_{23} \\\\ a_{31} & a_{32} & a_{33} \\end{pmatrix}$. The first row of $\\adj(A)$ consists of the cofactors $C_{11}, C_{21}, C_{31}$[cite: 9, 167].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.2.2",
+                  "hintText": "Calculate the cofactor $C_{11} = (-1)^{1+1} M_{11}$. Write out the $2 \\times 2$ determinant for $M_{11}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.2.3",
+                  "hintText": "Now calculate the cross product $\\mathbf{a}_2 \\times \\mathbf{a}_3$. Write out the components of this vector using the determinant formula for the cross product or component-wise definition.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.2.4",
+                  "hintText": "Compare the first component of $\\mathbf{a}_2 \\times \\mathbf{a}_3$ with the cofactor $C_{11}$. Are they equal?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.2.5",
+                  "hintText": "Now calculate the cofactor $C_{21} = (-1)^{2+1} M_{21}$. Write out the $2 \\times 2$ determinant for $M_{21}$. Compare it with the second component of $\\mathbf{a}_2 \\times \\mathbf{a}_3$. Are they equal? (Pay attention to the sign from $(-1)^{2+1}$).",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.2.6",
+                  "hintText": " Calculate $C_{31} = (-1)^{3+1} M_{31}$. Compare it with the third component of $\\mathbf{a}_2 \\times \\mathbf{a}_3$. Are they equal?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.2.7",
+                  "hintText": " Since the components of $(\\mathbf{a}_2 \\times \\mathbf{a}_3)^T$ match the first row of $\\adj(A)$ ($C_{11}, C_{21}, C_{31}$), the first part of the formula is verified. Repeat the process for the second and third rows of $\\adj(A)$ using $\\mathbf{a}_3 \\times \\mathbf{a}_1$ and $\\mathbf{a}_1 \\times \\mathbf{a}_2$ respectively.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-8.1.3",
+              "questionText": "Let $\\lambda$ be an eigenvalue of an invertible $n \\times n$ matrix $A$. Show that $\\detm(A)/\\lambda$ is an eigenvalue of $\\adj(A)$[cite: 111, 112, 113]. What happens if $A$ is singular?",
+              "answerType": "proof-eigenvalue",
+              "hints": [
+                {
+                  "hintId": "h-8.1.3.1",
+                  "hintText": " Case 1: $A$ is invertible. Start with the relationship $\\adj(A) = \\detm(A) A^{-1}$[cite: 111].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.3.2",
+                  "hintText": " If $\\lambda$ is an eigenvalue of $A$, what are the eigenvalues of $A^{-1}$? [cite: 112]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.3.3",
+                  "hintText": "  If $M = c N$, how do the eigenvalues of $M$ relate to the eigenvalues of $N$? Use this with $M = \\adj(A)$, $N=A^{-1}$, and $c = \\detm(A)$ to find the eigenvalues of $\\adj(A)$ in terms of $\\lambda$ and $\\detm(A)$[cite: 113].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.3.4",
+                  "hintText": "  Case 2: $A$ is singular ($\\detm(A)=0$). Assume $\\rank(A)=n-1$ (the most interesting singular case)[cite: 114]. What is the rank of $\\adj(A)$? [cite: 81, 114]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.3.5",
+                  "hintText": "  A matrix of rank 1 has at most one non-zero eigenvalue[cite: 115]. What are most of the eigenvalues of $\\adj(A)$ in this case? [cite: 116]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.3.6",
+                  "hintText": "  Let $A\\mathbf{v} = \\lambda \\mathbf{v}$ with $\\lambda \\neq 0$. Consider $A \\adj(A) = 0$. Multiply by $\\mathbf{v}$ on the right. Alternatively use $\\adj(A) A = 0$. Multiply by $\\mathbf{v}$ on the right: $\\adj(A) A \\mathbf{v} = \\mathbf{0}$. Substitute $A\\mathbf{v}=\\lambda \\mathbf{v}$[cite: 117, 118].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.3.7",
+                  "hintText": "  You should get $\\lambda \\adj(A) \\mathbf{v} = \\mathbf{0}$[cite: 118]. Since $\\lambda \\neq 0$, what does this say about $\\adj(A)\\mathbf{v}$? What eigenvalue of $\\adj(A)$ does the eigenvector $\\mathbf{v}$ (corresponding to $\\lambda \\neq 0$ of $A$) correspond to? [cite: 119, 120]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.3.8",
+                  "hintText": "  What about the eigenvalue $\\lambda=0$ of $A$? Let $A\\mathbf{w} = \\mathbf{0}$ where $\\mathbf{w}$ is in the nullspace of $A$. Since $\\rank(\\adj(A))=1$ and its columns are in the nullspace of $A$, the image of $\\adj(A)$ is spanned by $\\mathbf{w}$[cite: 124, 125]. Thus $\\adj(A)\\mathbf{w}$ must be a multiple of $\\mathbf{w}$. $\\adj(A)\\mathbf{w} = \\mu \\mathbf{w}$. This $\\mu$ is the potentially non-zero eigenvalue of $\\adj(A)$[cite: 126]. Can we determine $\\mu$? It's given as $\\tr(\\adj(A))$[cite: 126].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-8.1.3.9",
+                  "hintText": " What if $\\rank(A) \\le n-2$? What is $\\adj(A)$? What are its eigenvalues? [cite: 127]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-9",
+      "sectionTitle": "Challenge / Contest-Style Problems",
+      "problems": [
+        {
+          "problemId": "prob-9.1",
+          "problemTitle": "From Properties to Solutions",
+          "questions": [
+            {
+              "questionId": "q-9.1.1",
+              "questionText": "If $A$ is a real $n \\times n$ matrix such that $\\adj(A) = A^T$, what are the possible values for $\\detm(A)$?",
+              "answerType": "deduction-self-adjugate-transpose",
+              "hints": [
+                {
+                  "hintId": "h-9.1.1.1",
+                  "hintText": "Start by taking the determinant of both sides of the equation $\\adj(A) = A^T$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.1.2",
+                  "hintText": "Use the identities $\\detm(\\adj(A)) = (\\detm A)^{n-1}$ [cite: 57] and $\\detm(A^T) = \\detm(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.1.3",
+                  "hintText": "You should arrive at an equation involving only $\\detm(A)$ and $n$. Let $d = \\detm(A)$. The equation is $d^{n-1} = d$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.1.4",
+                  "hintText": "Solve the equation $d^{n-1} - d = 0$ or $d(d^{n-2}-1) = 0$ for $d$. What are the possible real solutions for $d$? Consider the cases $n=1$, $n=2$, and $n > 2$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.1.5",
+                  "hintText": " If $n=1$, $A=(a)$, $\\adj(A)=(1)$, $A^T=(a)$. So $a=1$. $\\detm(A)=1$. Does $d(d^{1-2}-1)=0$ make sense? Let's use $d^{n-1}=d$. If $n=1$, $d^0=d$, so $1=d$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.1.6",
+                  "hintText": " If $n=2$, $d(d^0-1)=0$, so $d(1-1)=0$, which is $0=0$. This doesn't restrict $d$. Let's re-evaluate. For $n=2$, $d^2=d$. This identity gives no information for $n=2$. Let's try $A\\adj(A) = \\detm(A)I$. Substitute $\\adj(A)=A^T$. So $A A^T = \\detm(A)I$. Take determinants: $\\detm(A)\\detm(A^T) = (\\detm A)^n$. $(\\detm A)^2 = (\\detm A)^n$. $d^2 = d^n$. $d^2(1-d^{n-2})=0$. This implies $d=0$ or $d^{n-2}=1$. If $n=2$, $d^0=1$, which is $1=1$. Still no restriction. If $A=\\begin{pmatrix} a&b\\\\c&d \\end{pmatrix}$, $A^T=\\begin{pmatrix} a&c\\\\b&d \\end{pmatrix}$, $\\adj(A)=\\begin{pmatrix} d&-b\\\\-c&a \\end{pmatrix}$. So we need $d=a, -b=c, -c=b, a=d$. This means $a=d$ and $c=-b$. Matrix is $A=\\begin{pmatrix} a&b\\\\-b&a \\end{pmatrix}$. $\\detm(A)=a^2+b^2$. Can this be any non-negative real number? Yes. So for $n=2$, $\\detm(A)$ can be any value $\\ge 0$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.1.7",
+                  "hintText": " If $n>2$, $d=0$ or $d^{n-2}=1$. Since $A$ is real, $d^{n-2}=1$ implies $d=1$ or (if $n$ is even) $d=-1$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.1.8",
+                  "hintText": "  Summarize the possible values for $\\detm(A)$ based on $n$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-9.1.2",
+              "questionText": "Prove the result cited in the document: If $A^2=A$ (and $A$ is $n \\times n$) and $\\rank(A)=n-1$, then $\\adj(A) = I-A$[cite: 262].",
+              "answerType": "proof-idempotent",
+              "hints": [
+                {
+                  "hintId": "h-9.1.2.1",
+                  "hintText": "Since $A^2=A$ and $A \\neq I$ (because $\\rank(A)=n-1 < n$), $A$ must be singular. Why? [cite: 240] So $\\detm(A)=0$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.2",
+                  "hintText": "What is the rank of $\\adj(A)$ if $\\rank(A)=n-1$? [cite: 81, 243]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.3",
+                  "hintText": "What is the rank of $I-A$? Recall that $A$ and $I-A$ are complementary projections. Use the property $\\rank(P) + \\rank(I-P) = n$ for a projection $P$. [cite: 244]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.4",
+                  "hintText": "So, both $\\adj(A)$ and $I-A$ have rank 1. We need to show they are equal, not just proportional.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.5",
+                  "hintText": "Consider the product $A \\adj(A)$. What is it equal to, since $\\detm(A)=0$? [cite: 39]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.6",
+                  "hintText": "Now consider the product $A(I-A)$. Expand it using $A^2=A$. Is it equal to $A \\adj(A)$? [cite: 246] This shows columns of $\\adj(A)$ and $I-A$ are in the nullspace of $A$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.7",
+                  "hintText": "Since $\\rank(A)=n-1$, the nullspace of $A$ is 1-dimensional[cite: 85]. Both $\\adj(A)$ and $I-A$ are rank 1 matrices whose columns span this nullspace. This means $\\adj(A) = k(I-A)$ for some scalar $k$[cite: 249].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.8",
+                  "hintText": "How can we find $k$? Take the trace of both sides: $\\tr(\\adj(A)) = k \\tr(I-A)$[cite: 250].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.9",
+                  "hintText": "What are the eigenvalues of an idempotent matrix $A$ with rank $n-1$?[cite: 184, 251]. How many eigenvalues are 1 and how many are 0?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.10",
+                  "hintText": "Use the eigenvalues to calculate $\\tr(A)$. Then calculate $\\tr(I-A) = \\tr(I) - \\tr(A)$[cite: 251, 252].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.11",
+                  "hintText": "Recall from Problem 8.1.3 (or re-derive using characteristic polynomial coefficients) that the non-zero eigenvalue of $\\adj(A)$ (when $\\rank(A)=n-1$) is $\\tr(\\adj(A))$[cite: 126]. Also, the coefficient $c_1$ of $\\lambda$ in the characteristic polynomial $p(\\lambda)=\\detm(\\lambda I - A)$ is related to $\\tr(\\adj(A))$[cite: 257].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.12",
+                  "hintText": "The characteristic polynomial for $A$ is $p(\\lambda) = \\lambda^1 (\\lambda-1)^{n-1}$[cite: 255]. Find the coefficient of $\\lambda^1$ in this polynomial by expanding $(\\lambda-1)^{n-1}$ using the binomial theorem or by differentiation[cite: 259].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.13",
+                  "hintText": "Relate this coefficient $c_1$ to $\\tr(\\adj(A))$ using $c_1 = (-1)^{n-1} \\tr(\\adj(A))$[cite: 257, 260]. Show that $\\tr(\\adj(A)) = 1$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.14",
+                  "hintText": "Substitute $\\tr(\\adj(A))=1$ and $\\tr(I-A)=1$ into the equation from Hint 8: $\\tr(\\adj(A)) = k \\tr(I-A)$. What must $k$ be? [cite: 261]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.2.15",
+                  "hintText": "Since $k=1$, we have $\\adj(A) = I-A$[cite: 262].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-9.1.3",
+              "questionText": " Find all $2 \\times 2$ real matrices $A$ such that $\\adj(A)=A$[cite: 207].",
+              "answerType": "computation-self-adjugate",
+              "hints": [
+                {
+                  "hintId": "h-9.1.3.1",
+                  "hintText": " Let $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$. Then $\\adj(A) = \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$[cite: 15]. Set $A=\\adj(A)$. What equations must $a,b,c,d$ satisfy?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.3.2",
+                  "hintText": "  The equations are $a=d$, $b=-b$, $c=-c$, $d=a$. What do $b=-b$ and $c=-c$ imply about $b$ and $c$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.3.3",
+                  "hintText": "  So, $b=0$ and $c=0$. The matrix must be diagonal, $A=\\begin{pmatrix} a & 0 \\\\ 0 & d \\end{pmatrix}$. The condition $a=d$ still holds. So $A=\\begin{pmatrix} a & 0 \\\\ 0 & a \\end{pmatrix} = aI_2$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.3.4",
+                  "hintText": "  Now, let's check the general analysis. If $\\adj(A)=A$, then $\\detm(A)$ must satisfy $d(d^{n-2}-1)=0$. For $n=2$, this is $d(d^0-1)=0 \\implies d(1-1)=0 \\implies 0=0$. This gave no restriction on $\\detm(A)$. However, we also have $A\\adj(A)=\\detm(A)I$. If $\\adj(A)=A$, then $A^2 = \\detm(A)I$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.3.5",
+                  "hintText": " Apply $A^2 = \\detm(A)I$ to our candidate solution $A=aI_2$. $(aI_2)^2 = a^2 I_2$. $\\detm(aI_2) I_2 = a^2 I_2$. So $a^2 I_2 = a^2 I_2$. This holds for any scalar $a$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-9.1.3.6",
+                  "hintText": "  Therefore, any matrix of the form $A=aI_2 = \\begin{pmatrix} a & 0 \\\\ 0 & a \\end{pmatrix}$ is a solution for $n=2$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-10",
+      "sectionTitle": "Edge Cases",
+      "problems": [
+        {
+          "problemId": "prob-10.1",
+          "problemTitle": "Handling Extremes",
+          "questions": [
+            {
+              "questionId": "q-10.1.1",
+              "questionText": "Let $A = (a)$ be a $1 \\times 1$ matrix. Verify explicitly that $\\adj(A)=(1)$ and that $A \\adj(A) = \\detm(A) I_1$[cite: 300, 301, 302]. Why is $\\adj((0))=(1)$ not zero?",
+              "answerType": "proof-verification-1x1",
+              "hints": [
+                {
+                  "hintId": "h-10.1.1.1",
+                  "hintText": "For $A=(a)$, the cofactor matrix $C$ has entry $C_{11} = (-1)^{1+1} M_{11}$[cite: 300].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.1.2",
+                  "hintText": "The minor $M_{11}$ is the determinant of the matrix obtained by removing row 1 and column 1. This is the $0 \\times 0$ matrix. By convention, what is its determinant? [cite: 300]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.1.3",
+                  "hintText": "Calculate $C_{11}$ using the determinant from Hint 2. This gives the cofactor matrix $C=(C_{11})$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.1.4",
+                  "hintText": "The adjugate is the transpose of the cofactor matrix: $\\adj(A) = C^T$[cite: 8, 301]. What is the transpose of a $1 \\times 1$ matrix?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.1.5",
+                  "hintText": "Now compute the product $A \\adj(A) = (a)(1)$[cite: 302].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.1.6",
+                  "hintText": " Compute the right side $\\detm(A) I_1$. What is $\\detm((a))$? What is $I_1$? [cite: 302] Compare both sides.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.1.7",
+                  "hintText": " The fact that $\\adj((0))=(1)$ follows directly from the definition involving the $0 \\times 0$ determinant being 1[cite: 301, 304]. It seems counterintuitive but is required for consistency, especially for the identity $A \\adj(A) = \\detm(A) I$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-10.1.2",
+              "questionText": "Verify that $\\adj(I_n) = I_n$ for any $n \\ge 1$[cite: 141, 307].",
+              "answerType": "proof-verification-identity",
+              "hints": [
+                {
+                  "hintId": "h-10.1.2.1",
+                  "hintText": "We need the $(i, j)$-th entry of $\\adj(I_n)$, which is $C_{ji}(I_n) = (-1)^{j+i} M_{ji}(I_n)$[cite: 9].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.2.2",
+                  "hintText": " Consider the minor $M_{ji}(I_n)$. This is the determinant of $I_n$ with row $j$ and column $i$ removed.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.2.3",
+                  "hintText": " Case 1: $j=i$. The minor $M_{ii}(I_n)$ is the determinant of $I_n$ with row $i$ and column $i$ removed. What matrix is this? What is its determinant? [cite: 305]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.2.4",
+                  "hintText": " Case 2: $j \\neq i$. The minor $M_{ji}(I_n)$ is the determinant of $I_n$ with row $j$ and column $i$ removed. Can you show this resulting matrix must have a row or column of all zeros? (Consider the $j$-th row if $j>i$, or the $i$-th column if $i>j$). What is the determinant of a matrix with a zero row or column? [cite: 305]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.2.5",
+                  "hintText": " So, $M_{ji}(I_n) = 1$ if $j=i$ and $0$ if $j \\neq i$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.2.6",
+                  "hintText": " Now find the cofactor $C_{ji}(I_n) = (-1)^{j+i} M_{ji}(I_n)$. Does the sign matter when $M_{ji}=0$? What is $C_{ii}(I_n)$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-10.1.2.7",
+                  "hintText": " This shows that the entry $(i, j)$ of $\\adj(I_n)$, which is $C_{ji}(I_n)$, is 1 if $i=j$ and 0 if $i \\neq j$. What matrix has these entries? [cite: 307]",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-11",
+      "sectionTitle": "Adjugate and Matrix Transformations",
+      "problems": [
+        {
+          "problemId": "prob-11.1",
+          "problemTitle": "Similarity Transformation",
+          "questions": [
+            {
+              "questionId": "q-11.1.1",
+              "questionText": "Prove that if $B = P^{-1} A P$ for an invertible matrix $P$, then $\\adj(B) = P^{-1} \\adj(A) P$[cite: 104].",
+              "answerType": "proof-similarity",
+              "hints": [
+                {
+                  "hintId": "h-11.1.1.1",
+                  "hintText": "Start with the definition $B = P^{-1} A P$. Apply the adjugate operation to both sides: $\\adj(B) = \\adj(P^{-1} A P)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-11.1.1.2",
+                  "hintText": "Recall the property $\\adj(XYZ) = \\adj(Z) \\adj(Y) \\adj(X)$ [derived by applying $\\adj(MN)=\\adj(N)\\adj(M)$ twice, see cite: 49]. Apply this to $\\adj(P^{-1} A P)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-11.1.1.3",
+                  "hintText": "You should have $\\adj(B) = \\adj(P) \\adj(A) \\adj(P^{-1})$. Now we need to relate $\\adj(P)$ and $\\adj(P^{-1})$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-11.1.1.4",
+                  "hintText": "Recall the inverse formula: $M^{-1} = \\frac{1}{\\detm(M)} \\adj(M)$. This implies $\\adj(M) = \\detm(M) M^{-1}$. Apply this to $M=P$ and $M=P^{-1}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-11.1.1.5",
+                  "hintText": "Express $\\adj(P)$ in terms of $\\detm(P)$ and $P^{-1}$. Express $\\adj(P^{-1})$ in terms of $\\detm(P^{-1})$ and $(P^{-1})^{-1} = P$. Remember $\\detm(P^{-1}) = 1/\\detm(P)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-11.1.1.6",
+                  "hintText": "Substitute the expressions for $\\adj(P)$ and $\\adj(P^{-1})$ from the previous hint back into the equation from Hint 3: $\\adj(B) = (\\detm(P) P^{-1}) \\adj(A) ((\\detm P)^{-1} P)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-11.1.1.7",
+                  "hintText": "Simplify the expression by canceling the determinant factors. Does the result match the desired $P^{-1} \\adj(A) P$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-12",
+      "sectionTitle": "Connections to Characteristic Polynomial and Eigenvectors",
+      "problems": [
+        {
+          "problemId": "prob-12.1",
+          "problemTitle": "Cayley-Hamilton Theorem and Adjugate",
+          "questions": [
+            {
+              "questionId": "q-12.1.1",
+              "questionText": "Let $p(\\lambda) = \\detm(\\lambda I - A) = \\lambda^n + c_{n-1}\\lambda^{n-1} + \\dots + c_1\\lambda + c_0$ be the characteristic polynomial of $A$. Show that $\\adj(A) = - (A^{n-1} + c_{n-1}A^{n-2} + \\dots + c_2 A + c_1 I)$[cite: 148]. \\textit{(Note: Requires careful handling of polynomial definition and potentially the identity $\\adj(\\lambda I - A)(\\lambda I - A) = p(\\lambda)I$)}.",
+              "answerType": "proof-cayley-hamilton",
+              "hints": [
+                {
+                  "hintId": "h-12.1.1.1",
+                  "hintText": "Recall the Cayley-Hamilton Theorem: $p(A) = A^n + c_{n-1}A^{n-1} + \\dots + c_1 A + c_0 I = 0$[cite: 147].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.2",
+                  "hintText": "Consider the matrix polynomial $B(\\lambda) = \\adj(\\lambda I - A)$. The entries of $B(\\lambda)$ are cofactors of $\\lambda I - A$, which are polynomials in $\\lambda$ of degree at most $n-1$. We can write $B(\\lambda) = B_{n-1}\\lambda^{n-1} + \\dots + B_1 \\lambda + B_0$, where $B_k$ are matrix coefficients.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.3",
+                  "hintText": "Use the fundamental identity: $(\\lambda I - A) \\adj(\\lambda I - A) = \\detm(\\lambda I - A) I = p(\\lambda) I$. Substitute the polynomial forms: $(\\lambda I - A) (B_{n-1}\\lambda^{n-1} + \\dots + B_0) = (\\lambda^n + c_{n-1}\\lambda^{n-1} + \\dots + c_0) I$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.4",
+                  "hintText": "Expand the left side and collect terms by powers of $\\lambda$. $\\lambda^n B_{n-1} + \\lambda^{n-1}(B_{n-2} - A B_{n-1}) + \\dots + \\lambda(B_0 - A B_1) - A B_0$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.5",
+                  "hintText": "Equate the matrix coefficients of powers of $\\lambda$ on both sides of the identity from Hint 3.\n        $\\lambda^n$: $B_{n-1} = I$\n        $\\lambda^{n-1}$: $B_{n-2} - A B_{n-1} = c_{n-1} I$\n        ...\n        $\\lambda^1$: $B_0 - A B_1 = c_1 I$\n        $\\lambda^0$: $-A B_0 = c_0 I$",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.6",
+                  "hintText": "From the coefficient equations, express $B_{n-2}, B_{n-3}, \\dots, B_0$ recursively in terms of $A$ and the coefficients $c_k$.\n        $B_{n-1}=I$\n        $B_{n-2} = A B_{n-1} + c_{n-1}I = A + c_{n-1}I$\n        $B_{n-3} = A B_{n-2} + c_{n-2}I = A(A+c_{n-1}I) + c_{n-2}I = A^2 + c_{n-1}A + c_{n-2}I$\n        ... Continue this pattern. What is the general expression for $B_k$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.7",
+                  "hintText": "The constant term of the polynomial $B(\\lambda) = \\adj(\\lambda I - A)$ is $B_0$. Find $B_0$ by setting $\\lambda = 0$: $B(0) = \\adj(-A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.8",
+                  "hintText": "We know $\\adj(-A) = (-1)^{n-1} \\adj(A)$. So, $B_0 = (-1)^{n-1} \\adj(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.9",
+                  "hintText": "From the recursive definition in Hint 6, what expression do you get for $B_0$? It should be $B_0 = A^{n-1} + c_{n-1}A^{n-2} + \\dots + c_1 I$. (Verify this also satisfies $-AB_0=c_0 I$ using Cayley-Hamilton).",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.1.10",
+                  "hintText": "Equate the two expressions for $B_0$: $(-1)^{n-1} \\adj(A) = A^{n-1} + c_{n-1}A^{n-2} + \\dots + c_1 I$. Does this match the target expression $\\adj(A) = - (A^{n-1} + \\dots + c_1 I)$? It matches if $n$ is even. If $n$ is odd, $(-1)^{n-1}=1$, giving $\\adj(A) = A^{n-1} + \\dots + c_1 I$. There might be a sign convention difference in the polynomial definition or the source formula[cite: 148]. Let's re-check the source: it uses $-(...)$. The standard derivation often leads to $(-1)^{n-1}(...)$. Let's assume the source formula [cite: 148] is the target. How can we reconcile this? Check the relation $c_0 = \\detm(-A) = (-1)^n \\detm(A)$[cite: 149]. The equation $-AB_0=c_0I$ is key. If $B_0 = (-1)^{n-1}\\adj(A)$, then $-A((-1)^{n-1}\\adj(A)) = c_0 I$. $(-1)^n A \\adj(A) = c_0 I$. $(-1)^n \\detm(A) I = c_0 I$. This matches $c_0 = (-1)^n \\detm(A)$. Now equate $B_0 = A^{n-1} + \\dots + c_1 I$ with $B_0 = (-1)^{n-1} \\adj(A)$ to solve for $\\adj(A)$. $\\adj(A) = (-1)^{n-1} (A^{n-1} + c_{n-1}A^{n-2} + \\dots + c_1 I)$. Compare with[cite: 148]. The formula in [cite: 148] seems to be off by a factor of $(-1)^{n-1}$ based on this standard derivation unless their $c_k$ definition differs. Assuming the derivation is correct, the result is $\\adj(A) = (-1)^{n-1} (A^{n-1} + \\dots + c_1 I)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-12.1.2",
+              "questionText": "Let $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$. Find the eigenvalues $\\lambda$ of $A$. For each eigenvalue, compute $B = A - \\lambda I$ and find a non-zero column of $\\adj(B)$. Verify that this column is an eigenvector of $A$ corresponding to $\\lambda$.",
+              "answerType": "computation-eigenvector-adjugate",
+              "hints": [
+                {
+                  "hintId": "h-12.1.2.1",
+                  "hintText": "First, find the eigenvalues of $A$ by solving the characteristic equation $\\detm(A - \\lambda I) = 0$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.2.2",
+                  "hintText": "For the first eigenvalue $\\lambda_1$, calculate the matrix $B_1 = A - \\lambda_1 I$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.2.3",
+                  "hintText": "Calculate $\\adj(B_1)$. Since $A-\\lambda_1 I$ is singular, $\\detm(B_1)=0$. What does this imply about $B_1 \\adj(B_1)$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.2.4",
+                  "hintText": "Find $\\adj(B_1)$ using the $2 \\times 2$ shortcut. Is it the zero matrix? (It shouldn't be if the eigenvalue has geometric multiplicity 1, which is true here).",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.2.5",
+                  "hintText": "Let $\\vect{c}_1$ be any non-zero column of $\\adj(B_1)$. Verify that $B_1 \\vect{c}_1 = \\vect{0}$. (This follows from $B_1 \\adj(B_1) = 0$).",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.2.6",
+                  "hintText": "Since $B_1 \\vect{c}_1 = (A - \\lambda_1 I) \\vect{c}_1 = \\vect{0}$, rewrite this as $A \\vect{c}_1 = \\lambda_1 \\vect{c}_1$. Does this confirm $\\vect{c}_1$ is an eigenvector for $\\lambda_1$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-12.1.2.7",
+                  "hintText": "Repeat steps 2-6 for the second eigenvalue $\\lambda_2$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-13",
+      "sectionTitle": "Further Exploration of Identities and Properties",
+      "problems": [
+        {
+          "problemId": "prob-13.1",
+          "problemTitle": "Adjugate Iteration and Determinants",
+          "questions": [
+            {
+              "questionId": "q-13.1.1",
+              "questionText": "Let $A$ be an $n \\times n$ matrix. Find an expression for $\\adj(\\adj(\\adj(A)))$ in terms of $A$ and $\\detm(A)$. Assume $n \\ge 2$.",
+              "answerType": "computation-identity-triple-adj",
+              "hints": [
+                {
+                  "hintId": "h-13.1.1.1",
+                  "hintText": "Let $B = \\adj(A)$. We know $\\adj(B) = \\adj(\\adj(A)) = (\\detm A)^{n-2} A$[cite: 67].",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.2",
+                  "hintText": "Let $C = \\adj(B) = \\adj(\\adj(A))$. We want to find $\\adj(C)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.3",
+                  "hintText": "Use the formula $\\adj(C) = \\detm(C) C^{-1}$ if $C$ is invertible. When is $C = (\\detm A)^{n-2} A$ invertible? (Assume $A$ is invertible for now).",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.4",
+                  "hintText": "Calculate $\\detm(C) = \\detm((\\detm A)^{n-2} A)$. Use $\\detm(kA)=k^n \\detm(A)$. $\\detm(C) = ((\\detm A)^{n-2})^n \\detm(A) = (\\detm A)^{n(n-2)+1}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.5",
+                  "hintText": "Calculate $C^{-1} = ((\\detm A)^{n-2} A)^{-1}$. Use $(kA)^{-1} = k^{-1} A^{-1}$. $C^{-1} = ((\\detm A)^{n-2})^{-1} A^{-1} = (\\detm A)^{-(n-2)} A^{-1}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.6",
+                  "hintText": "Substitute $\\detm(C)$ and $C^{-1}$ into $\\adj(C) = \\detm(C) C^{-1}$. Simplify the expression involving powers of $\\detm(A)$. Recall $A^{-1} = (1/\\detm A) \\adj(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.7",
+                  "hintText": "$\\adj(C) = (\\detm A)^{n(n-2)+1} (\\detm A)^{-(n-2)} A^{-1} = (\\detm A)^{n^2-2n+1 -n+2} A^{-1} = (\\detm A)^{n^2-3n+3} A^{-1}$. This is one form. Can we relate it back to $A$ or $\\adj(A)$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.8",
+                  "hintText": "Alternative approach: Apply the $\\adj(\\adj(X))$ formula to $X = \\adj(A)$. $\\adj(\\adj(\\adj(A))) = (\\detm(\\adj A))^{n-2} \\adj(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.9",
+                  "hintText": "Substitute $\\detm(\\adj A) = (\\detm A)^{n-1}$. $\\adj(\\adj(\\adj(A))) = ((\\detm A)^{n-1})^{n-2} \\adj(A) = (\\detm A)^{(n-1)(n-2)} \\adj(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.1.1.10",
+                  "hintText": "Does this formula hold even if $A$ is singular? Consider the ranks. If $\\rank(A) \\le n-2$, then $\\adj(A)=0$, $\\adj(\\adj(A))=0$, $\\adj(\\adj(\\adj(A)))=0$. The formula gives $(\\detm A)^k \\adj(A) = 0 \\cdot 0 = 0$. OK. If $\\rank(A)=n-1$, then $\\detm A = 0$. $\\adj(A)$ has rank 1. $\\adj(\\adj(A))=0$ (if $n \\ge 3$). Then $\\adj(\\adj(\\adj(A))) = \\adj(0) = 0$ (if $n \\ge 3$). The formula gives $0^k \\adj(A) = 0$. OK for $n \\ge 3$. Check $n=2$: $\\adj(\\adj(\\adj(A))) = (\\detm A)^{(2-1)(2-2)} \\adj(A) = (\\detm A)^0 \\adj(A) = \\adj(A)$. Let's verify. $\\adj(A)$ is $\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$. $\\adj(\\adj(A))=A$. $\\adj(\\adj(\\adj(A))) = \\adj(A)$. It holds. So the formula is $(\\detm A)^{(n-1)(n-2)} \\adj(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        },
+        {
+          "problemId": "prob-13.2",
+          "problemTitle": "Rank Relationships Nuances",
+          "questions": [
+            {
+              "questionId": "q-13.2.1",
+              "questionText": "Let $A$ be an $n \\times n$ matrix with $n \\ge 3$. Suppose $\\rank(A) = n-1$. We know $\\rank(\\adj(A))=1$. Let $\\vect{u}$ span the 1D nullspace of $A^T$ (left nullspace of $A$) and $\\vect{v}$ span the 1D nullspace of $A$ (right nullspace). Show that $\\adj(A)$ can be written in the form $\\adj(A) = c \\vect{u} \\vect{v}^T$ for some non-zero scalar $c$.",
+              "answerType": "proof-rank-outer-product",
+              "hints": [
+                {
+                  "hintId": "h-13.2.1.1",
+                  "hintText": "Since $\\rank(\\adj(A))=1$, all columns of $\\adj(A)$ are scalar multiples of a single non-zero vector, say $\\vect{w}_1$. Similarly, all rows of $\\adj(A)$ are scalar multiples of a single non-zero vector, say $\\vect{w}_2^T$. This is a property of rank 1 matrices, which can always be written as an outer product $\\vect{a} \\vect{b}^T$. So $\\adj(A) = \\vect{a} \\vect{b}^T$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.2",
+                  "hintText": "We know that $A \\adj(A) = 0$. Substituting $\\adj(A) = \\vect{a} \\vect{b}^T$, we get $A (\\vect{a} \\vect{b}^T) = (A\\vect{a})\\vect{b}^T = 0$. Since $\\vect{b}^T$ is non-zero (otherwise $\\adj(A)=0$), this implies $A\\vect{a} = \\vect{0}$. What does this tell us about the vector $\\vect{a}$ in relation to the nullspace of $A$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.3",
+                  "hintText": "Since the nullspace of $A$ is spanned by $\\vect{v}$, $\\vect{a}$ must be a scalar multiple of $\\vect{v}$. So, $\\vect{a} = k_1 \\vect{v}$ for some $k_1 \\neq 0$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.4",
+                  "hintText": "Now consider $\\adj(A) A = 0$. Substituting $\\adj(A) = \\vect{a} \\vect{b}^T$, we get $(\\vect{a} \\vect{b}^T) A = \\vect{a} (\\vect{b}^T A) = 0$. Since $\\vect{a}$ is non-zero, this implies $\\vect{b}^T A = \\vect{0}^T$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.5",
+                  "hintText": "Taking the transpose, $A^T \\vect{b} = \\vect{0}$. What does this tell us about the vector $\\vect{b}$ in relation to the nullspace of $A^T$?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.6",
+                  "hintText": "Since the nullspace of $A^T$ is spanned by $\\vect{u}$, $\\vect{b}$ must be a scalar multiple of $\\vect{u}$. So, $\\vect{b} = k_2 \\vect{u}$ for some $k_2 \\neq 0$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.7",
+                  "hintText": "Substitute $\\vect{a} = k_1 \\vect{v}$ and $\\vect{b} = k_2 \\vect{u}$ back into $\\adj(A) = \\vect{a} \\vect{b}^T$. $\\adj(A) = (k_1 \\vect{v}) (k_2 \\vect{u})^T = (k_1 k_2) \\vect{v} \\vect{u}^T$. Wait, the target was $c \\vect{u} \\vect{v}^T$. Let's re-check the standard definition.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.8",
+                  "hintText": "Rethink: The columns of $\\adj(A)$ are in the nullspace of $A$ (spanned by $\\vect{v}$). So $\\adj(A)$ must have the form $\\vect{v} \\vect{y}^T$ for some vector $\\vect{y}$. The rows of $\\adj(A)$ are related to the nullspace of $A^T$. $(\\adj A)^T = \\adj(A^T)$. The columns of $\\adj(A^T)$ are in the nullspace of $A^T$ (spanned by $\\vect{u}$). So $\\adj(A^T) = \\vect{u} \\vect{z}^T$. Then $\\adj(A) = (\\adj(A^T))^T = (\\vect{u} \\vect{z}^T)^T = \\vect{z} \\vect{u}^T$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.9",
+                  "hintText": "Comparing the two forms: $\\adj(A) = \\vect{v} \\vect{y}^T = \\vect{z} \\vect{u}^T$. This implies $\\vect{z}$ must be proportional to $\\vect{v}$ and $\\vect{y}$ must be proportional to $\\vect{u}$. Let $\\vect{z} = c \\vect{v}$ and $\\vect{y} = d \\vect{u}$. Then $\\adj(A) = c \\vect{v} \\vect{u}^T$. This seems consistent. Where did the target $c \\vect{u} \\vect{v}^T$ come from? Let's re-read the question statement.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.10",
+                  "hintText": "If $\\adj(A) = c \\vect{u} \\vect{v}^T$. Check $A \\adj(A) = A (c \\vect{u} \\vect{v}^T) = c (A\\vect{u}) \\vect{v}^T$. Is $A\\vect{u}=0$? No, $\\vect{u}$ is in the left nullspace ($A^T \\vect{u}=0$). Check $\\adj(A) A = (c \\vect{u} \\vect{v}^T) A = c \\vect{u} (\\vect{v}^T A)$. Is $\\vect{v}^T A = \\vect{0}^T$? Yes, since $A^T \\vect{v} = \\vect{0}$ is not necessarily true. We know $A\\vect{v}=0$. So $(\\vect{v}^T A)^T = A^T (\\vect{v}^T)^T = A^T \\vect{v}$. No, this doesn't help. We know $A\\vect{v}=0$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-13.2.1.11",
+                  "hintText": "Let's reconsider $A \\adj(A) = 0$. Columns of $\\adj(A)$ must be in nullspace(A), spanned by $\\vect{v}$. So $\\adj(A) = \\vect{v} \\vect{y}^T$. Let's reconsider $\\adj(A) A = 0$. Rows of $\\adj(A)$ must be in the left nullspace of $A$ (nullspace of $A^T$), spanned by $\\vect{u}^T$. So $\\adj(A) = \\vect{z} \\vect{u}^T$. Equating these gives $\\vect{v} \\vect{y}^T = \\vect{z} \\vect{u}^T$. This holds if $\\vect{z}= k \\vect{v}$ and $\\vect{y}^T = l \\vect{u}^T$. So $\\adj(A) = (k\\vect{v}) (l \\vect{u})^T = (kl) \\vect{v} \\vect{u}^T$. This form seems correct. Let $c = kl$. $\\adj(A) = c \\vect{v} \\vect{u}^T$. The question might have swapped $\\vect{u}$ and $\\vect{v}$ roles or their definitions (row vs column). Assuming $\\vect{u}$ spans Null($A^T$) and $\\vect{v}$ spans Null($A$), the result is $\\adj(A) = c \\vect{v} \\vect{u}^T$. If the question intended $\\vect{u}$ for Null($A$) and $\\vect{v}$ for Null($A^T$), the result follows. Let's stick to the derivation $\\adj(A) = c \\vect{v} \\vect{u}^T$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "sec-14",
+      "sectionTitle": "Block Matrices and Cramer's Rule",
+      "problems": [
+        {
+          "problemId": "prob-14.1",
+          "problemTitle": "Block Matrix Adjugate (Specific Entries)",
+          "questions": [
+            {
+              "questionId": "q-14.1.1",
+              "questionText": "Let $A = \\begin{pmatrix} B & \\vect{u} \\\\ \\vect{v}^T & \\alpha \\end{pmatrix}$, where $B$ is $(n-1) \\times (n-1)$, $\\vect{u}, \\vect{v}$ are column vectors, and $\\alpha$ is a scalar. Find the entry in the bottom-right corner ($n,n$) of $\\adj(A)$, and find the column vector in the last column, positions $1$ to $n-1$ [see cite: 264-287 for context].",
+              "answerType": "computation-block-matrix-adjugate",
+              "hints": [
+                {
+                  "hintId": "h-14.1.1.1",
+                  "hintText": "The entry $(\\adj A)_{nn}$ is the cofactor $C_{nn}(A)$. How is this cofactor defined?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.2",
+                  "hintText": "$C_{nn}(A) = (-1)^{n+n} M_{nn}(A) = M_{nn}(A)$. What is the minor $M_{nn}(A)$? It's the determinant of the matrix obtained by removing row $n$ and column $n$ from $A$. What matrix block remains? Calculate its determinant.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.3",
+                  "hintText": "Now consider the entries $(\\adj A)_{in}$ for $i = 1, \\dots, n-1$. These are the cofactors $C_{ni}(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.4",
+                  "hintText": "$C_{ni}(A) = (-1)^{n+i} M_{ni}(A)$. What is the minor $M_{ni}(A)$? It's the determinant of the matrix obtained by removing row $n$ and column $i$ from $A$. Let's call this submatrix $S_{ni}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.5",
+                  "hintText": "Write down the structure of $S_{ni}$. Its rows are the first $n-1$ rows of $A$. Its columns are the first $n-1$ columns of $A$ excluding column $i$, plus the last column of $A$. $S_{ni} = \\begin{pmatrix} B_{\\text{no col } i} & \\vect{u} \\end{pmatrix}$. This requires careful interpretation. Let's reconsider $M_{ni}$. Remove row $n$ ($\\vect{v}^T, \\alpha$) and column $i$ (column $i$ of $B$, and $v_i$). The remaining matrix is $\\begin{pmatrix} B_{\\text{no row } n, \\text{ col } i} & \\vect{u}_{\\text{no row } n?} \\\\ \\vect{v}^T_{\\text{no col } i?} & ?? \\end{pmatrix}$. No, this is getting confusing.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.6",
+                  "hintText": "Let's use a known formula (e.g., from Wikipedia's \"Adjugate matrix\" page under block matrices, often derived alongside the block inverse formula). The block corresponding to $(\\adj A)_{1:n-1, n}$ is given by $-\\adj(B) \\vect{u}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.7",
+                  "hintText": "Let's try to verify this. Recall $A \\adj(A) = \\detm(A) I$. The last column of this product should be $\\detm(A) \\vect{e}_n$. This column is $A \\cdot (\\text{last col of } \\adj A)$. Let the last column of $\\adj A$ be $\\begin{pmatrix} \\vect{y} \\\\ \\delta \\end{pmatrix}$. We found $\\delta = C_{nn} = \\detm(B)$. Let's assume $\\vect{y} = -\\adj(B)\\vect{u}$. Then $A \\begin{pmatrix} -\\adj(B)\\vect{u} \\\\ \\detm(B) \\end{pmatrix} = \\begin{pmatrix} B & \\vect{u} \\\\ \\vect{v}^T & \\alpha \\end{pmatrix} \\begin{pmatrix} -\\adj(B)\\vect{u} \\\\ \\detm(B) \\end{pmatrix} = \\begin{pmatrix} -B\\adj(B)\\vect{u} + \\vect{u}\\detm(B) \\\\ -\\vect{v}^T\\adj(B)\\vect{u} + \\alpha\\detm(B) \\end{pmatrix}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.8",
+                  "hintText": "Simplify the top block: $-\\detm(B)I \\vect{u} + \\detm(B)\\vect{u} = -\\detm(B)\\vect{u} + \\detm(B)\\vect{u} = \\vect{0}$. This matches the top $n-1$ entries of $\\detm(A) \\vect{e}_n$, which are zeros.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.9",
+                  "hintText": "Simplify the bottom block: $\\alpha\\detm(B) - \\vect{v}^T\\adj(B)\\vect{u}$. Recall the formula for the determinant of a block matrix (Schur complement): $\\detm(A) = \\alpha \\detm(B) - \\vect{v}^T \\adj(B) \\vect{u}$. This matches the required $(n,n)$ entry of $\\detm(A)I$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.1.10",
+                  "hintText": "So, the bottom-right entry is $\\detm(B)$ and the rest of the last column is the vector $-\\adj(B)\\vect{u}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            },
+            {
+              "questionId": "q-14.1.2",
+              "questionText": "Explain how Cramer's Rule $x_i = \\frac{\\detm(A_i)}{\\detm(A)}$ for solving $A\\vect{x}=\\vect{b}$ follows directly from the adjugate inverse formula $\\vect{x} = \\frac{1}{\\detm(A)} \\adj(A) \\vect{b}$.",
+              "answerType": "proof-cramers-rule",
+              "hints": [
+                {
+                  "hintId": "h-14.1.2.1",
+                  "hintText": "Start with $\\vect{x} = \\frac{1}{\\detm(A)} \\adj(A) \\vect{b}$. Let's look at the $i$-th component, $x_i$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.2.2",
+                  "hintText": "$x_i = \\frac{1}{\\detm(A)} (\\text{row } i \\text{ of } \\adj(A)) \\cdot \\vect{b}$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.2.3",
+                  "hintText": "What are the entries of row $i$ of $\\adj(A)$? Remember $(\\adj A)_{ij} = C_{ji}(A)$. So row $i$ is $((\\adj A)_{i1}, \\dots, (\\adj A)_{in}) = (C_{1i}(A), C_{2i}(A), \\dots, C_{ni}(A))$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.2.4",
+                  "hintText": "Substitute this into the dot product: $x_i = \\frac{1}{\\detm(A)} \\sum_{j=1}^{n} (\\adj A)_{ij} b_j = \\frac{1}{\\detm(A)} \\sum_{j=1}^{n} C_{ji}(A) b_j$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.2.5",
+                  "hintText": "Consider the sum $\\sum_{j=1}^{n} b_j C_{ji}(A)$. Recall the Laplace (cofactor) expansion for a determinant along a column $k$: $\\detm(M) = \\sum_{j=1}^{n} M_{jk} C_{jk}(M)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.2.6",
+                  "hintText": "Let $A_i$ be the matrix $A$ with its $i$-th column replaced by the vector $\\vect{b}$. Consider the Laplace expansion of $\\detm(A_i)$ along its $i$-th column. The entries of this column are $b_1, \\dots, b_n$. The cofactors $C_{ji}(A_i)$ for this column are calculated from the submatrices formed by removing row $j$ and column $i$ from $A_i$. Are these submatrices the same as those used to calculate $C_{ji}(A)$? Yes, because column $i$ was removed.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.2.7",
+                  "hintText": "Therefore, the Laplace expansion of $\\detm(A_i)$ along column $i$ is $\\detm(A_i) = \\sum_{j=1}^{n} (A_i)_{ji} C_{ji}(A_i) = \\sum_{j=1}^{n} b_j C_{ji}(A)$.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.2.8",
+                  "hintText": "Compare the sum in Hint 7 with the sum in Hint 4. They are identical.",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                },
+                {
+                  "hintId": "h-14.1.2.9",
+                  "hintText": "Substitute $\\sum_{j=1}^{n} C_{ji}(A) b_j = \\detm(A_i)$ back into the expression for $x_i$ from Hint 4. Does this yield Cramer's Rule?",
+                  "interactivePromptText": null,
+                  "interactiveAnswerType": null,
+                  "interactiveCorrectAnswer": null
+                }
+              ],
+              "correctAnswer": null
+            }
+          ]
+        }
+      ]
+    }
+  ]

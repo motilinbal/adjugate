@@ -1,0 +1,307 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}[section]
+\newtheorem{question}{Question}[problem]
+\theoremstyle{definition}
+\newtheorem{hint}{Hint}[question]
+
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\detm}{\operatorname{det}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\vect}[1]{\mathbf{#1}} % For vectors
+
+\title{Classical Adjoint (Adjugate) Matrix: Advanced Problems}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Adjugate and Matrix Transformations}
+
+\begin{problem}{Similarity Transformation}
+    \begin{question}
+        Prove that if $B = P^{-1} A P$ for an invertible matrix $P$, then $\adj(B) = P^{-1} \adj(A) P$[cite: 104].
+    \end{question}
+    \begin{hint}
+        Start with the definition $B = P^{-1} A P$. Apply the adjugate operation to both sides: $\adj(B) = \adj(P^{-1} A P)$.
+    \end{hint}
+    \begin{hint}
+        Recall the property $\adj(XYZ) = \adj(Z) \adj(Y) \adj(X)$ [derived by applying $\adj(MN)=\adj(N)\adj(M)$ twice, see cite: 49]. Apply this to $\adj(P^{-1} A P)$.
+    \end{hint}
+    \begin{hint}
+        You should have $\adj(B) = \adj(P) \adj(A) \adj(P^{-1})$. Now we need to relate $\adj(P)$ and $\adj(P^{-1})$.
+    \end{hint}
+    \begin{hint}
+        Recall the inverse formula: $M^{-1} = \frac{1}{\detm(M)} \adj(M)$. This implies $\adj(M) = \detm(M) M^{-1}$. Apply this to $M=P$ and $M=P^{-1}$.
+    \end{hint}
+    \begin{hint}
+        Express $\adj(P)$ in terms of $\detm(P)$ and $P^{-1}$. Express $\adj(P^{-1})$ in terms of $\detm(P^{-1})$ and $(P^{-1})^{-1} = P$. Remember $\detm(P^{-1}) = 1/\detm(P)$.
+    \end{hint}
+    \begin{hint}
+        Substitute the expressions for $\adj(P)$ and $\adj(P^{-1})$ from the previous hint back into the equation from Hint 3: $\adj(B) = (\detm(P) P^{-1}) \adj(A) ((\detm P)^{-1} P)$.
+    \end{hint}
+    \begin{hint}
+        Simplify the expression by canceling the determinant factors. Does the result match the desired $P^{-1} \adj(A) P$?
+    \end{hint}
+\end{problem}
+
+\section{Connections to Characteristic Polynomial and Eigenvectors}
+
+\begin{problem}{Cayley-Hamilton Theorem and Adjugate}
+    \begin{question}
+        Let $p(\lambda) = \detm(\lambda I - A) = \lambda^n + c_{n-1}\lambda^{n-1} + \dots + c_1\lambda + c_0$ be the characteristic polynomial of $A$. Show that $\adj(A) = - (A^{n-1} + c_{n-1}A^{n-2} + \dots + c_2 A + c_1 I)$[cite: 148].
+        \textit{(Note: Requires careful handling of polynomial definition and potentially the identity $\adj(\lambda I - A)(\lambda I - A) = p(\lambda)I$)}.
+    \end{question}
+    \begin{hint}
+        Recall the Cayley-Hamilton Theorem: $p(A) = A^n + c_{n-1}A^{n-1} + \dots + c_1 A + c_0 I = 0$[cite: 147].
+    \end{hint}
+    \begin{hint}
+        Consider the matrix polynomial $B(\lambda) = \adj(\lambda I - A)$. The entries of $B(\lambda)$ are cofactors of $\lambda I - A$, which are polynomials in $\lambda$ of degree at most $n-1$. We can write $B(\lambda) = B_{n-1}\lambda^{n-1} + \dots + B_1 \lambda + B_0$, where $B_k$ are matrix coefficients.
+    \end{hint}
+    \begin{hint}
+        Use the fundamental identity: $(\lambda I - A) \adj(\lambda I - A) = \detm(\lambda I - A) I = p(\lambda) I$.
+        Substitute the polynomial forms: $(\lambda I - A) (B_{n-1}\lambda^{n-1} + \dots + B_0) = (\lambda^n + c_{n-1}\lambda^{n-1} + \dots + c_0) I$.
+    \end{hint}
+    \begin{hint}
+        Expand the left side and collect terms by powers of $\lambda$.
+        $\lambda^n B_{n-1} + \lambda^{n-1}(B_{n-2} - A B_{n-1}) + \dots + \lambda(B_0 - A B_1) - A B_0$.
+    \end{hint}
+    \begin{hint}
+        Equate the matrix coefficients of powers of $\lambda$ on both sides of the identity from Hint 3.
+        $\lambda^n$: $B_{n-1} = I$
+        $\lambda^{n-1}$: $B_{n-2} - A B_{n-1} = c_{n-1} I$
+        ...
+        $\lambda^1$: $B_0 - A B_1 = c_1 I$
+        $\lambda^0$: $-A B_0 = c_0 I$
+    \end{hint}
+    \begin{hint}
+        From the coefficient equations, express $B_{n-2}, B_{n-3}, \dots, B_0$ recursively in terms of $A$ and the coefficients $c_k$.
+        $B_{n-1}=I$
+        $B_{n-2} = A B_{n-1} + c_{n-1}I = A + c_{n-1}I$
+        $B_{n-3} = A B_{n-2} + c_{n-2}I = A(A+c_{n-1}I) + c_{n-2}I = A^2 + c_{n-1}A + c_{n-2}I$
+        ... Continue this pattern. What is the general expression for $B_k$?
+    \end{hint}
+    \begin{hint}
+        The constant term of the polynomial $B(\lambda) = \adj(\lambda I - A)$ is $B_0$. Find $B_0$ by setting $\lambda = 0$: $B(0) = \adj(-A)$.
+    \end{hint}
+    \begin{hint}
+        We know $\adj(-A) = (-1)^{n-1} \adj(A)$. So, $B_0 = (-1)^{n-1} \adj(A)$.
+    \end{hint}
+    \begin{hint}
+        From the recursive definition in Hint 6, what expression do you get for $B_0$? It should be $B_0 = A^{n-1} + c_{n-1}A^{n-2} + \dots + c_1 I$. (Verify this also satisfies $-AB_0=c_0 I$ using Cayley-Hamilton).
+    \end{hint}
+    \begin{hint}
+        Equate the two expressions for $B_0$: $(-1)^{n-1} \adj(A) = A^{n-1} + c_{n-1}A^{n-2} + \dots + c_1 I$.
+        Does this match the target expression $\adj(A) = - (A^{n-1} + \dots + c_1 I)$? It matches if $n$ is even. If $n$ is odd, $(-1)^{n-1}=1$, giving $\adj(A) = A^{n-1} + \dots + c_1 I$. There might be a sign convention difference in the polynomial definition or the source formula[cite: 148]. Let's re-check the source: it uses $-(...)$. The standard derivation often leads to $(-1)^{n-1}(...)$. Let's assume the source formula [cite: 148] is the target. How can we reconcile this? Check the relation $c_0 = \detm(-A) = (-1)^n \detm(A)$[cite: 149]. The equation $-AB_0=c_0I$ is key. If $B_0 = (-1)^{n-1}\adj(A)$, then $-A((-1)^{n-1}\adj(A)) = c_0 I$. $(-1)^n A \adj(A) = c_0 I$. $(-1)^n \detm(A) I = c_0 I$. This matches $c_0 = (-1)^n \detm(A)$. Now equate $B_0 = A^{n-1} + \dots + c_1 I$ with $B_0 = (-1)^{n-1} \adj(A)$ to solve for $\adj(A)$.
+        $\adj(A) = (-1)^{n-1} (A^{n-1} + c_{n-1}A^{n-2} + \dots + c_1 I)$. Compare with[cite: 148]. The formula in [cite: 148] seems to be off by a factor of $(-1)^{n-1}$ based on this standard derivation unless their $c_k$ definition differs. Assuming the derivation is correct, the result is $\adj(A) = (-1)^{n-1} (A^{n-1} + \dots + c_1 I)$.
+    \end{hint}
+
+    \begin{question}
+        Let $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. Find the eigenvalues $\lambda$ of $A$. For each eigenvalue, compute $B = A - \lambda I$ and find a non-zero column of $\adj(B)$. Verify that this column is an eigenvector of $A$ corresponding to $\lambda$.
+    \end{question}
+    \begin{hint}
+        First, find the eigenvalues of $A$ by solving the characteristic equation $\detm(A - \lambda I) = 0$.
+    \end{hint}
+    \begin{hint}
+        For the first eigenvalue $\lambda_1$, calculate the matrix $B_1 = A - \lambda_1 I$.
+    \end{hint}
+    \begin{hint}
+        Calculate $\adj(B_1)$. Since $A-\lambda_1 I$ is singular, $\detm(B_1)=0$. What does this imply about $B_1 \adj(B_1)$?
+    \end{hint}
+    \begin{hint}
+        Find $\adj(B_1)$ using the $2 \times 2$ shortcut. Is it the zero matrix? (It shouldn't be if the eigenvalue has geometric multiplicity 1, which is true here).
+    \end{hint}
+    \begin{hint}
+        Let $\vect{c}_1$ be any non-zero column of $\adj(B_1)$. Verify that $B_1 \vect{c}_1 = \vect{0}$. (This follows from $B_1 \adj(B_1) = 0$).
+    \end{hint}
+    \begin{hint}
+        Since $B_1 \vect{c}_1 = (A - \lambda_1 I) \vect{c}_1 = \vect{0}$, rewrite this as $A \vect{c}_1 = \lambda_1 \vect{c}_1$. Does this confirm $\vect{c}_1$ is an eigenvector for $\lambda_1$?
+    \end{hint}
+    \begin{hint}
+        Repeat steps 2-6 for the second eigenvalue $\lambda_2$.
+    \end{hint}
+\end{problem}
+
+\section{Further Exploration of Identities and Properties}
+
+\begin{problem}{Adjugate Iteration and Determinants}
+    \begin{question}
+        Let $A$ be an $n \times n$ matrix. Find an expression for $\adj(\adj(\adj(A)))$ in terms of $A$ and $\detm(A)$. Assume $n \ge 2$.
+    \end{question}
+    \begin{hint}
+        Let $B = \adj(A)$. We know $\adj(B) = \adj(\adj(A)) = (\detm A)^{n-2} A$[cite: 67].
+    \end{hint}
+    \begin{hint}
+        Let $C = \adj(B) = \adj(\adj(A))$. We want to find $\adj(C)$.
+    \end{hint}
+    \begin{hint}
+        Use the formula $\adj(C) = \detm(C) C^{-1}$ if $C$ is invertible. When is $C = (\detm A)^{n-2} A$ invertible? (Assume $A$ is invertible for now).
+    \end{hint}
+    \begin{hint}
+        Calculate $\detm(C) = \detm((\detm A)^{n-2} A)$. Use $\detm(kA)=k^n \detm(A)$.
+        $\detm(C) = ((\detm A)^{n-2})^n \detm(A) = (\detm A)^{n(n-2)+1}$.
+    \end{hint}
+    \begin{hint}
+        Calculate $C^{-1} = ((\detm A)^{n-2} A)^{-1}$. Use $(kA)^{-1} = k^{-1} A^{-1}$.
+        $C^{-1} = ((\detm A)^{n-2})^{-1} A^{-1} = (\detm A)^{-(n-2)} A^{-1}$.
+    \end{hint}
+    \begin{hint}
+        Substitute $\detm(C)$ and $C^{-1}$ into $\adj(C) = \detm(C) C^{-1}$. Simplify the expression involving powers of $\detm(A)$. Recall $A^{-1} = (1/\detm A) \adj(A)$.
+    \end{hint}
+    \begin{hint}
+        $\adj(C) = (\detm A)^{n(n-2)+1} (\detm A)^{-(n-2)} A^{-1} = (\detm A)^{n^2-2n+1 -n+2} A^{-1} = (\detm A)^{n^2-3n+3} A^{-1}$.
+        This is one form. Can we relate it back to $A$ or $\adj(A)$?
+    \end{hint}
+    \begin{hint}
+        Alternative approach: Apply the $\adj(\adj(X))$ formula to $X = \adj(A)$.
+        $\adj(\adj(\adj(A))) = (\detm(\adj A))^{n-2} \adj(A)$.
+    \end{hint}
+    \begin{hint}
+        Substitute $\detm(\adj A) = (\detm A)^{n-1}$.
+        $\adj(\adj(\adj(A))) = ((\detm A)^{n-1})^{n-2} \adj(A) = (\detm A)^{(n-1)(n-2)} \adj(A)$.
+    \end{hint}
+    \begin{hint}
+        Does this formula hold even if $A$ is singular? Consider the ranks. If $\rank(A) \le n-2$, then $\adj(A)=0$, $\adj(\adj(A))=0$, $\adj(\adj(\adj(A)))=0$. The formula gives $(\detm A)^k \adj(A) = 0 \cdot 0 = 0$. OK.
+        If $\rank(A)=n-1$, then $\detm A = 0$. $\adj(A)$ has rank 1. $\adj(\adj(A))=0$ (if $n \ge 3$). Then $\adj(\adj(\adj(A))) = \adj(0) = 0$ (if $n \ge 3$). The formula gives $0^k \adj(A) = 0$. OK for $n \ge 3$.
+        Check $n=2$: $\adj(\adj(\adj(A))) = (\detm A)^{(2-1)(2-2)} \adj(A) = (\detm A)^0 \adj(A) = \adj(A)$. Let's verify. $\adj(A)$ is $\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$. $\adj(\adj(A))=A$. $\adj(\adj(\adj(A))) = \adj(A)$. It holds.
+        So the formula is $(\detm A)^{(n-1)(n-2)} \adj(A)$.
+    \end{hint}
+\end{problem}
+
+\begin{problem}{Rank Relationships Nuances}
+    \begin{question}
+        Let $A$ be an $n \times n$ matrix with $n \ge 3$. Suppose $\rank(A) = n-1$. We know $\rank(\adj(A))=1$. Let $\vect{u}$ span the 1D nullspace of $A^T$ (left nullspace of $A$) and $\vect{v}$ span the 1D nullspace of $A$ (right nullspace). Show that $\adj(A)$ can be written in the form $\adj(A) = c \vect{u} \vect{v}^T$ for some non-zero scalar $c$.
+    \end{question}
+    \begin{hint}
+        Since $\rank(\adj(A))=1$, all columns of $\adj(A)$ are scalar multiples of a single non-zero vector, say $\vect{w}_1$. Similarly, all rows of $\adj(A)$ are scalar multiples of a single non-zero vector, say $\vect{w}_2^T$. This is a property of rank 1 matrices, which can always be written as an outer product $\vect{a} \vect{b}^T$. So $\adj(A) = \vect{a} \vect{b}^T$.
+    \end{hint}
+    \begin{hint}
+        We know that $A \adj(A) = 0$. Substituting $\adj(A) = \vect{a} \vect{b}^T$, we get $A (\vect{a} \vect{b}^T) = (A\vect{a})\vect{b}^T = 0$. Since $\vect{b}^T$ is non-zero (otherwise $\adj(A)=0$), this implies $A\vect{a} = \vect{0}$. What does this tell us about the vector $\vect{a}$ in relation to the nullspace of $A$?
+    \end{hint}
+    \begin{hint}
+        Since the nullspace of $A$ is spanned by $\vect{v}$, $\vect{a}$ must be a scalar multiple of $\vect{v}$. So, $\vect{a} = k_1 \vect{v}$ for some $k_1 \neq 0$.
+    \end{hint}
+    \begin{hint}
+        Now consider $\adj(A) A = 0$. Substituting $\adj(A) = \vect{a} \vect{b}^T$, we get $(\vect{a} \vect{b}^T) A = \vect{a} (\vect{b}^T A) = 0$. Since $\vect{a}$ is non-zero, this implies $\vect{b}^T A = \vect{0}^T$.
+    \end{hint}
+    \begin{hint}
+        Taking the transpose, $A^T \vect{b} = \vect{0}$. What does this tell us about the vector $\vect{b}$ in relation to the nullspace of $A^T$?
+    \end{hint}
+    \begin{hint}
+        Since the nullspace of $A^T$ is spanned by $\vect{u}$, $\vect{b}$ must be a scalar multiple of $\vect{u}$. So, $\vect{b} = k_2 \vect{u}$ for some $k_2 \neq 0$.
+    \end{hint}
+    \begin{hint}
+        Substitute $\vect{a} = k_1 \vect{v}$ and $\vect{b} = k_2 \vect{u}$ back into $\adj(A) = \vect{a} \vect{b}^T$.
+        $\adj(A) = (k_1 \vect{v}) (k_2 \vect{u})^T = (k_1 k_2) \vect{v} \vect{u}^T$. Wait, the target was $c \vect{u} \vect{v}^T$. Let's re-check the standard definition.
+    \end{hint}
+    \begin{hint}
+        Rethink: The columns of $\adj(A)$ are in the nullspace of $A$ (spanned by $\vect{v}$). So $\adj(A)$ must have the form $\vect{v} \vect{y}^T$ for some vector $\vect{y}$.
+        The rows of $\adj(A)$ are related to the nullspace of $A^T$. $(\adj A)^T = \adj(A^T)$. The columns of $\adj(A^T)$ are in the nullspace of $A^T$ (spanned by $\vect{u}$). So $\adj(A^T) = \vect{u} \vect{z}^T$.
+        Then $\adj(A) = (\adj(A^T))^T = (\vect{u} \vect{z}^T)^T = \vect{z} \vect{u}^T$.
+    \end{hint}
+    \begin{hint}
+        Comparing the two forms: $\adj(A) = \vect{v} \vect{y}^T = \vect{z} \vect{u}^T$.
+        This implies $\vect{z}$ must be proportional to $\vect{v}$ and $\vect{y}$ must be proportional to $\vect{u}$.
+        Let $\vect{z} = c \vect{v}$ and $\vect{y} = d \vect{u}$.
+        Then $\adj(A) = c \vect{v} \vect{u}^T$. This seems consistent. Where did the target $c \vect{u} \vect{v}^T$ come from? Let's re-read the question statement. Ah, it asks to show $\adj(A) = c \vect{u} \vect{v}^T$. Let's test this form.
+    \end{hint}
+    \begin{hint}
+        If $\adj(A) = c \vect{u} \vect{v}^T$. Check $A \adj(A) = A (c \vect{u} \vect{v}^T) = c (A\vect{u}) \vect{v}^T$. Is $A\vect{u}=0$? No, $\vect{u}$ is in the left nullspace ($A^T \vect{u}=0$).
+        Check $\adj(A) A = (c \vect{u} \vect{v}^T) A = c \vect{u} (\vect{v}^T A)$. Is $\vect{v}^T A = \vect{0}^T$? Yes, since $A^T \vect{v} = \vect{0}$ is not necessarily true. We know $A\vect{v}=0$. So $(\vect{v}^T A)^T = A^T (\vect{v}^T)^T = A^T \vect{v}$. No, this doesn't help. We know $A\vect{v}=0$.
+    \end{hint}
+    \begin{hint}
+        Let's reconsider $A \adj(A) = 0$. Columns of $\adj(A)$ must be in nullspace(A), spanned by $\vect{v}$. So $\adj(A) = \vect{v} \vect{y}^T$.
+        Let's reconsider $\adj(A) A = 0$. Rows of $\adj(A)$ must be in the left nullspace of $A$ (nullspace of $A^T$), spanned by $\vect{u}^T$. So $\adj(A) = \vect{z} \vect{u}^T$.
+        Equating these gives $\vect{v} \vect{y}^T = \vect{z} \vect{u}^T$. This holds if $\vect{z}= k \vect{v}$ and $\vect{y}^T = l \vect{u}^T$.
+        So $\adj(A) = (k\vect{v}) (l \vect{u})^T = (kl) \vect{v} \vect{u}^T$. This form seems correct. Let $c = kl$. $\adj(A) = c \vect{v} \vect{u}^T$.
+        The question might have swapped $\vect{u}$ and $\vect{v}$ roles or their definitions (row vs column). Assuming $\vect{u}$ spans Null($A^T$) and $\vect{v}$ spans Null($A$), the result is $\adj(A) = c \vect{v} \vect{u}^T$. If the question intended $\vect{u}$ for Null($A$) and $\vect{v}$ for Null($A^T$), the result follows. Let's stick to the derivation $\adj(A) = c \vect{v} \vect{u}^T$.
+    \end{hint}
+\end{problem}
+
+\section{Block Matrices and Cramer's Rule}
+
+\begin{problem}{Block Matrix Adjugate (Specific Entries)}
+    \begin{question}
+        Let $A = \begin{pmatrix} B & \vect{u} \\ \vect{v}^T & \alpha \end{pmatrix}$, where $B$ is $(n-1) \times (n-1)$, $\vect{u}, \vect{v}$ are column vectors, and $\alpha$ is a scalar. Find the entry in the bottom-right corner ($n,n$) of $\adj(A)$, and find the column vector in the last column, positions $1$ to $n-1$ [see cite: 264-287 for context].
+    \end{question}
+    \begin{hint}
+        The entry $(\adj A)_{nn}$ is the cofactor $C_{nn}(A)$. How is this cofactor defined?
+    \end{hint}
+    \begin{hint}
+        $C_{nn}(A) = (-1)^{n+n} M_{nn}(A) = M_{nn}(A)$. What is the minor $M_{nn}(A)$? It's the determinant of the matrix obtained by removing row $n$ and column $n$ from $A$. What matrix block remains? Calculate its determinant.
+    \end{hint}
+    \begin{hint}
+        Now consider the entries $(\adj A)_{in}$ for $i = 1, \dots, n-1$. These are the cofactors $C_{ni}(A)$.
+    \end{hint}
+    \begin{hint}
+        $C_{ni}(A) = (-1)^{n+i} M_{ni}(A)$. What is the minor $M_{ni}(A)$? It's the determinant of the matrix obtained by removing row $n$ and column $i$ from $A$. Let's call this submatrix $S_{ni}$.
+    \end{hint}
+    \begin{hint}
+        Write down the structure of $S_{ni}$. Its rows are the first $n-1$ rows of $A$. Its columns are the first $n-1$ columns of $A$ excluding column $i$, plus the last column of $A$.
+        $S_{ni} = \begin{pmatrix} B_{\text{no col } i} & \vect{u} \end{pmatrix}$. This requires careful interpretation.
+        Let's reconsider $M_{ni}$. Remove row $n$ ($\vect{v}^T, \alpha$) and column $i$ (column $i$ of $B$, and $v_i$).
+        The remaining matrix is $\begin{pmatrix} B_{\text{no row } n, \text{ col } i} & \vect{u}_{\text{no row } n?} \\ \vect{v}^T_{\text{no col } i?} & ?? \end{pmatrix}$. No, this is getting confusing.
+    \end{hint}
+    \begin{hint}
+        Let's use a known formula (e.g., from Wikipedia's "Adjugate matrix" page under block matrices, often derived alongside the block inverse formula). The block corresponding to $(\adj A)_{1:n-1, n}$ is given by $-\adj(B) \vect{u}$.
+    \end{hint}
+    \begin{hint}
+        Let's try to verify this. Recall $A \adj(A) = \detm(A) I$. The last column of this product should be $\detm(A) \vect{e}_n$.
+        This column is $A \cdot (\text{last col of } \adj A)$. Let the last column of $\adj A$ be $\begin{pmatrix} \vect{y} \\ \delta \end{pmatrix}$.
+        We found $\delta = C_{nn} = \detm(B)$. Let's assume $\vect{y} = -\adj(B)\vect{u}$.
+        Then $A \begin{pmatrix} -\adj(B)\vect{u} \\ \detm(B) \end{pmatrix} = \begin{pmatrix} B & \vect{u} \\ \vect{v}^T & \alpha \end{pmatrix} \begin{pmatrix} -\adj(B)\vect{u} \\ \detm(B) \end{pmatrix} = \begin{pmatrix} -B\adj(B)\vect{u} + \vect{u}\detm(B) \\ -\vect{v}^T\adj(B)\vect{u} + \alpha\detm(B) \end{pmatrix}$.
+    \end{hint}
+    \begin{hint}
+        Simplify the top block: $-\detm(B)I \vect{u} + \detm(B)\vect{u} = -\detm(B)\vect{u} + \detm(B)\vect{u} = \vect{0}$. This matches the top $n-1$ entries of $\detm(A) \vect{e}_n$, which are zeros.
+    \end{hint}
+    \begin{hint}
+        Simplify the bottom block: $\alpha\detm(B) - \vect{v}^T\adj(B)\vect{u}$. Recall the formula for the determinant of a block matrix (Schur complement): $\detm(A) = \alpha \detm(B) - \vect{v}^T \adj(B) \vect{u}$. This matches the required $(n,n)$ entry of $\detm(A)I$.
+    \end{hint}
+    \begin{hint}
+        So, the bottom-right entry is $\detm(B)$ and the rest of the last column is the vector $-\adj(B)\vect{u}$.
+    \end{hint}
+
+    \begin{question}
+        Explain how Cramer's Rule $x_i = \frac{\detm(A_i)}{\detm(A)}$ for solving $A\vect{x}=\vect{b}$ follows directly from the adjugate inverse formula $\vect{x} = \frac{1}{\detm(A)} \adj(A) \vect{b}$.
+    \end{question}
+    \begin{hint}
+        Start with $\vect{x} = \frac{1}{\detm(A)} \adj(A) \vect{b}$. Let's look at the $i$-th component, $x_i$.
+    \end{hint}
+    \begin{hint}
+        $x_i = \frac{1}{\detm(A)} (\text{row } i \text{ of } \adj(A)) \cdot \vect{b}$.
+    \end{hint}
+    \begin{hint}
+        What are the entries of row $i$ of $\adj(A)$? Remember $(\adj A)_{ij} = C_{ji}(A)$. So row $i$ is $((\adj A)_{i1}, \dots, (\adj A)_{in}) = (C_{1i}(A), C_{2i}(A), \dots, C_{ni}(A))$.
+    \end{hint}
+    \begin{hint}
+        Substitute this into the dot product: $x_i = \frac{1}{\detm(A)} \sum_{j=1}^{n} (\adj A)_{ij} b_j = \frac{1}{\detm(A)} \sum_{j=1}^{n} C_{ji}(A) b_j$.
+    \end{hint}
+    \begin{hint}
+        Consider the sum $\sum_{j=1}^{n} b_j C_{ji}(A)$. Recall the Laplace (cofactor) expansion for a determinant along a column $k$: $\detm(M) = \sum_{j=1}^{n} M_{jk} C_{jk}(M)$.
+    \end{hint}
+    \begin{hint}
+        Let $A_i$ be the matrix $A$ with its $i$-th column replaced by the vector $\vect{b}$. Consider the Laplace expansion of $\detm(A_i)$ along its $i$-th column. The entries of this column are $b_1, \dots, b_n$. The cofactors $C_{ji}(A_i)$ for this column are calculated from the submatrices formed by removing row $j$ and column $i$ from $A_i$. Are these submatrices the same as those used to calculate $C_{ji}(A)$? Yes, because column $i$ was removed.
+    \end{hint}
+    \begin{hint}
+        Therefore, the Laplace expansion of $\detm(A_i)$ along column $i$ is $\detm(A_i) = \sum_{j=1}^{n} (A_i)_{ji} C_{ji}(A_i) = \sum_{j=1}^{n} b_j C_{ji}(A)$.
+    \end{hint}
+    \begin{hint}
+        Compare the sum in Hint 7 with the sum in Hint 4. They are identical.
+    \end{hint}
+    \begin{hint}
+        Substitute $\sum_{j=1}^{n} C_{ji}(A) b_j = \detm(A_i)$ back into the expression for $x_i$ from Hint 4. Does this yield Cramer's Rule?
+    \end{hint}
+\end{problem}
+
+\end{document}

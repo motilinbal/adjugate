@@ -1,0 +1,56 @@
+```json
+[
+  {
+    "sectionId": "string", // Unique identifier (e.g., "sec-intro", "sec-basic-comp")
+    "sectionTitle": "string", // Title from \section{} (e.g., "Introduction: Defining the Classical Adjoint")
+    "problems": [
+      {
+        "problemId": "string", // Unique identifier (e.g., "prob-1.1", "prob-2.1")
+        "problemTitle": "string", // Title from \begin{problem}{} (e.g., "Understanding Minors and Cofactors")
+        "questions": [
+          {
+            "questionId": "string", // Unique identifier (e.g., "q-1.1.1", "q-1.1.2")
+            "questionText": "string", // Full text of the question, preserving LaTeX math and citations (e.g., "Let $A = \\begin{pmatrix} ... \\end{pmatrix}$. Calculate $M_{23}$... [cite: 4, 5, 6]")
+            "answerType": "string", // Metadata indicating expected input type (e.g., "computation-minor-cofactor", "matrix-2x2", "matrix-3x3", "scalar", "proof-explanation", "multiple-choice") - helps the UI render appropriate input controls.
+            "hints": [
+              {
+                "hintId": "string", // Unique identifier (e.g., "h-1.1.1.1", "h-1.1.1.2") - reflects the implicit numbering.
+                "hintText": "string", // Full text of the hint, preserving LaTeX math and citations.
+                // --- Optional fields for enhanced interactivity (may require manual annotation during extraction) ---
+                "interactivePromptText": "string | null", // If the hint asks a direct sub-question (e.g., "What 2x2 matrix remains?"). Null if none.
+                "interactiveAnswerType": "string | null", // Type of expected answer for the prompt (e.g., "matrix-2x2", "text", "number"). Null if no prompt.
+                "interactiveCorrectAnswer": "any | null" // Correct answer for the prompt, for validation. Null if no prompt or validation not feasible.
+              }
+              // ... more hints for this question
+            ],
+            // --- Optional field for direct answer validation (mainly for computational problems) ---
+            "correctAnswer": "any | null" // The final correct answer to the question itself, if easily representable (e.g., a number, a simple matrix). Null otherwise.
+          }
+          // ... more questions for this problem
+        ]
+      }
+      // ... more problems for this section
+    ]
+  }
+  // ... more sections
+]
+```
+
+**Explanation of Schema Decisions:**
+
+* **Top-Level Array:** Represents the ordered sequence of sections in the documents.
+* **Nested Arrays (`problems`, `questions`, `hints`):** Naturally capture the hierarchical structure.
+* **Unique IDs (`sectionId`, `problemId`, etc.):** Essential for referencing specific content, tracking user progress, and potentially linking between related concepts/hints. A consistent naming convention (e.g., using section/problem numbers) should be adopted.
+* **LaTeX Preservation (`questionText`, `hintText`):** All text content containing LaTeX math is stored as a single string. The frontend app will be responsible for passing these strings to MathJax/KaTeX for rendering. Escape sequences necessary for JSON (like `\` becoming `\\`) must be handled during extraction.
+* **Metadata (`answerType`, `interactive...`, `correctAnswer`):** These fields are crucial for driving the app's interactivity and feedback mechanisms. They define what kind of input is expected and what constitutes a correct answer. Defining these might require some interpretation beyond direct extraction from LaTeX.
+* **Citations (`[cite: x]`):** Kept within the text strings. The app can choose to display them as plain text, ignore them, or potentially implement a feature to show citation details if a bibliography source were provided.
+
+**3. Deliverable for Step 1.1:**
+
+The primary deliverable for this step would be a formal document defining this JSON schema, including:
+
+* Clear definitions for each field.
+* Data types (string, number, array, object, null).
+* Mandatory vs. Optional fields.
+* Examples illustrating the structure for different types of questions/hints.
+* The convention used for generating unique IDs.

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adju-Great! - Interactive Adjoint Tutor</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true // Needed for processing \\ in JSON strings
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+        </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Adju-Great!</h1>
+        <p>Your Interactive Guide to the Classical Adjoint Matrix</p>
+    </header>
+
+    <main id="app-container">
+        <section id="problem-area">
+            <h2 id="section-title">Section Title Loading...</h2>
+            <h3 id="problem-title">Problem Title Loading...</h3>
+            <div id="question-display">
+                <p id="question-text">Question loading...</p>
+                <div id="answer-area">
+                </div>
+            </div>
+        </section>
+
+        <aside id="hint-area">
+            <h4>Hints</h4>
+            <div id="hints-container">
+                <p>Hints will appear here when requested.</p>
+            </div>
+            <button id="show-hint-btn">Show Hint</button>
+        </aside>
+
+        <nav id="navigation">
+            <button id="prev-btn" disabled>Previous Question</button>
+            <span id="progress-indicator">Q: 1/X | P: 1/Y | S: 1/Z</span>
+            <button id="next-btn">Next Question</button>
+        </nav>
+    </main>
+
+    <footer>
+        <p>Adju-Great! App</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
