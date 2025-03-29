@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       startup: {
           ready: () => {
-            console.log('MathJax is ready via config.');
+            console.log('MathJax is ready via config.'); // Log when ready callback fires
             MathJax.startup.defaultReady();
           }
       }
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Initialization failed (Promise.all rejected):', error); // LOG 9
             let specificError = error instanceof Error ? error.message : String(error);
-            if (specificError.includes("MathJax")) {
+            if (String(specificError).includes("MathJax")) { // Check if error message contains MathJax
                  showError(`Initialization failed: MathJax could not start. Check console. ${specificError}`);
             } else {
                  showError(`Initialization failed: Could not load data or start MathJax. Check console. ${specificError}`);
@@ -86,17 +86,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Functions ---
     function typesetElement(element) {
-       return MathJax.startup.promise.then(() => {
-            if (typeof MathJax !== 'undefined' && typeof MathJax.typesetPromise === 'function') {
-                 return MathJax.typesetPromise([element]);
-            } else {
-                console.error("MathJax or typesetPromise not available for typesetting even after ready promise.");
-                 return Promise.resolve();
-            }
-       }).catch((err) => {
-           console.error('MathJax typesetting error:', err);
+        console.log("typesetElement called for:", element); // Log entry
+        // Assume MathJax is ready because Promise.all waited for MathJax.startup.promise
+        // Check if the typesetPromise function itself exists and is callable
+        if (typeof MathJax !== 'undefined' && typeof MathJax.typesetPromise === 'function') {
+            console.log("MathJax.typesetPromise function found, calling it."); // Log success path
+            // Call typesetPromise directly
+            return MathJax.typesetPromise([element]).catch((err) => {
+                // Log errors specifically from typesetting
+                console.error('MathJax typesetting execution error:', err);
+                return Promise.resolve(); // Resolve anyway to avoid breaking chains
+            });
+        } else {
+            // This case would be unexpected if Promise.all worked, but good to have
+            console.error("MathJax.typesetPromise function not available when typesetElement was called.");
+            // Return a resolved promise to avoid breaking potential downstream chains
             return Promise.resolve();
-       });
+        }
     }
 
 
@@ -138,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("Calling typesetElement for question text."); // LOG 15
             typesetElement(questionTextEl)
                 .then(() => console.log("Question text typesetting attempted.")) // LOG 16
-                .catch(err => console.error("Error during question typesetting:", err));
+                .catch(err => console.error("Error during question typesetting:", err)); // Should be caught by helper
 
             updateNavigation();
             console.log("loadQuestion finished."); // LOG 17
@@ -181,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalSections = allData.length;
         const totalProblemsInSection = allData[currentSectionIndex]?.problems?.length || 0;
         const totalQuestionsInProblem = allData[currentSectionIndex]?.problems?.[currentProblemIndex]?.questions?.length || 0;
-        progressIndicatorEl.textContent = `S: ${currentSectionIndex + 1}/${totalSections} | P: ${currentProblemIndex + 1}/${totalProblemsInSection} | Q: ${currentQuestionIndex + 1}/${totalQuestionsInProblem}`;
+        progressIndicatorEl.textContent = `S: <span class="math-inline">\{currentSectionIndex \+ 1\}/</span>{totalSections} | P: <span class="math-inline">\{currentProblemIndex \+ 1\}/</span>{totalProblemsInSection} | Q: <span class="math-inline">\{currentQuestionIndex \+ 1\}/</span>{totalQuestionsInProblem}`;
         prevBtn.disabled = (currentSectionIndex === 0 && currentProblemIndex === 0 && currentQuestionIndex === 0);
         const isLastQuestion = currentSectionIndex === totalSections - 1 &&
                               currentProblemIndex === totalProblemsInSection - 1 &&
@@ -198,44 +204,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (direction === 'next') {
             if (currentQuestionIndex < problem.questions.length - 1) { currentQuestionIndex++; }
-            else if (currentProblemIndex < section.problems.length - 1) { currentProblemIndex++; currentQuestionIndex = 0; }
-            else if (currentSectionIndex < allData.length - 1) { currentSectionIndex++; currentProblemIndex = 0; currentQuestionIndex = 0; }
-            else { return; }
-        } else if (direction === 'prev') {
-             if (currentQuestionIndex > 0) { currentQuestionIndex--; }
-             else if (currentProblemIndex > 0) {
-                currentProblemIndex--;
-                 if (allData[currentSectionIndex]?.problems?.[currentProblemIndex]?.questions) {
-                     currentQuestionIndex = allData[currentSectionIndex].problems[currentProblemIndex].questions.length - 1;
-                 } else { currentQuestionIndex = 0; console.error("Previous problem has no questions array."); }
-            } else if (currentSectionIndex > 0) {
-                currentSectionIndex--;
-                 if (allData[currentSectionIndex]?.problems) {
-                      currentProblemIndex = allData[currentSectionIndex].problems.length - 1;
-                      if (allData[currentSectionIndex]?.problems?.[currentProblemIndex]?.questions) {
-                          currentQuestionIndex = allData[currentSectionIndex].problems[currentProblemIndex].questions.length - 1;
-                      } else { currentQuestionIndex = 0; console.error("Previous problem in previous section has no questions array."); }
-                 } else { currentProblemIndex = 0; currentQuestionIndex = 0; console.error("Previous section has no problems array."); }
-            } else { return; }
-        }
-        loadQuestion();
-    }
-
-    function showError(message) {
-        console.error("showError called with message:", message);
-        sectionTitleEl.textContent = "Error";
-        problemTitleEl.textContent = "";
-        questionTextEl.innerHTML = `<p style="color: red; font-weight: bold;">${message}</p>`;
-        hintsContainerEl.innerHTML = '';
-        showHintBtn.disabled = true;
-        nextBtn.disabled = true;
-        prevBtn.disabled = true;
-    }
-
-    // --- Event Listeners ---
-    showHintBtn.addEventListener('click', showHint);
-    nextBtn.addEventListener('click', () => navigate('next'));
-    prevBtn.addEventListener('click', () => navigate('prev'));
-    console.log("Event listeners added."); // LOG 19
-
-}); // End DOMContentLoaded
+            else if (currentProblemIndex < section.problems.length - 1) { currentProblemIndex
