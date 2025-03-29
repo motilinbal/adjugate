@@ -1,43 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Content Loaded. Script starting."); // LOG 1
 
-    // --- Create a manual promise for true MathJax readiness ---
     let mathJaxManualResolve;
     const mathJaxFullyReadyPromise = new Promise(resolve => {
         mathJaxManualResolve = resolve;
     });
     console.log("Manual MathJax readiness promise created."); // LOG ManualPromise
 
-    // **** MATHJAX CONFIGURATION OBJECT with ALL MACROS ****
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$', '$$'], ['\\[', '\\]']],
         processEscapes: true,
-        macros: {
-          adj: "\\operatorname{adj}",
-          vect: ["\\boldsymbol{#1}", 1],
-          detm: "\\operatorname{det}",
-          rank: "\\operatorname{rank}"
-        }
+        macros: { adj: "\\operatorname{adj}", vect: ["\\boldsymbol{#1}", 1], detm: "\\operatorname{det}", rank: "\\operatorname{rank}" }
       },
-      svg: {
-        fontCache: 'global'
-      },
+      svg: { fontCache: 'global' },
       startup: {
           ready: () => {
-            console.log('MathJax is ready via config -> Resolving manual promise.'); // LOG ReadyCallback
-            MathJax.startup.defaultReady(); // Default readiness processing
-            mathJaxManualResolve(); // Resolve OUR promise signaling full readiness
+            console.log('MathJax is ready via config.'); // LOG ReadyCallback
+            console.log('Detected MathJax Version:', MathJax.version); // Log version
+            MathJax.startup.defaultReady();
+            mathJaxManualResolve(); // Resolve OUR promise
           }
       }
     };
     console.log("MathJax configuration object defined."); // LOG Config
 
-    // --- Regex for cleaning citations ---
     const citationRegex = /\[cite:\s*\d+(\s*,\s*\d+)*\s*\]/g;
-
-    // --- DOM Elements ---
     const sectionTitleEl = document.getElementById('section-title');
     const problemTitleEl = document.getElementById('problem-title');
     const questionTextEl = document.getElementById('question-text');
@@ -46,61 +35,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
     const progressIndicatorEl = document.getElementById('progress-indicator');
-
-    // --- State Variables ---
     let allData = [];
     let currentSectionIndex = 0;
     let currentProblemIndex = 0;
     let currentQuestionIndex = 0;
     let currentHintIndex = -1;
 
-    // --- Promises ---
     console.log("Setting up fetch promise."); // LOG 3
     const fetchData = fetch('database.json')
-        .then(response => {
-            console.log("Fetch response received. Status:", response.status); // LOG 4
+        .then(response => { /* ... fetch logic ... */
+            console.log("Fetch response received. Status:", response.status);
             if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
             return response.json();
         })
-        .then(data => {
-            console.log("JSON data parsed successfully."); // LOG 5
+        .then(data => { /* ... parse logic ... */
+             console.log("JSON data parsed successfully.");
              if (!data || data.length === 0) { throw new Error("database.json seems empty or invalid."); }
             allData = data;
-            console.log("Data assigned to allData."); // LOG 6
+            console.log("Data assigned to allData.");
             return data;
         })
-        .catch(err => {
-            console.error("Error during fetch or JSON parsing:", err); // LOG 5e
-            throw err; // Re-throw
+        .catch(err => { /* ... fetch error handling ... */
+            console.error("Error during fetch or JSON parsing:", err);
+            throw err;
         });
 
-    // --- Initialize After BOTH Fetch and MathJax FULLY Ready ---
     console.log("Setting up Promise.all, waiting for fetch and MANUAL MathJax readiness."); // LOG 7
-    // **** MODIFIED: Wait for mathJaxFullyReadyPromise ****
     Promise.all([fetchData, mathJaxFullyReadyPromise])
         .then(() => {
-            // We only get here if BOTH fetchData resolved AND our manual promise resolved (via ready callback)
-            console.log("Promise.all resolved (fetchData & MathJax FULLY ready). Calling loadQuestion..."); // LOG 8
-            loadQuestion();
+            console.log("Promise.all resolved (fetchData & MathJax FULLY ready)."); // LOG 8
+            // **** ADDING DELAY before calling loadQuestion ****
+            console.log("Adding 150ms delay before first loadQuestion...");
+            setTimeout(() => {
+                 console.log("Delay finished. Calling loadQuestion..."); // LOG DelayEnd
+                 loadQuestion();
+            }, 150); // 150 millisecond delay - adjust if needed
+            // **** END OF DELAY ****
         })
-        .catch(error => {
-            // This should now primarily catch errors from fetchData
-            console.error('Initialization failed (Promise.all rejected):', error); // LOG 9
+        .catch(error => { /* ... Promise.all error handling ... */
+            console.error('Initialization failed (Promise.all rejected):', error);
             let specificError = error instanceof Error ? error.message : String(error);
-            // Less likely to be MathJax now, but check just in case config itself failed
-            if (String(specificError).includes("MathJax")) {
-                 showError(`Initialization failed: MathJax could not start. Check console. ${specificError}`);
-            } else {
-                 showError(`Initialization failed: Could not load data or start MathJax. Check console. ${specificError}`);
-            }
+             showError(`Initialization failed. Check console. ${specificError}`);
         });
 
 
     // --- Functions ---
-    // Keep the simplified typesetElement from the previous attempt
-    function typesetElement(element) {
+    // Use the simplified typesetElement from the previous attempt
+     function typesetElement(element) {
         console.log("typesetElement called for:", element);
-        // Assume MathJax is fully ready because Promise.all waited for the ready() callback.
         if (typeof MathJax !== 'undefined' && typeof MathJax.typesetPromise === 'function') {
             console.log("MathJax.typesetPromise function found, calling it.");
             return MathJax.typesetPromise([element]).catch((err) => {
@@ -113,22 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
     function loadQuestion() {
         console.log("loadQuestion called."); // LOG 10
         try {
-            // Data structure validation (same)
-             if (!allData || allData.length === 0 || !allData[currentSectionIndex] ||
-                !allData[currentSectionIndex].problems || allData[currentSectionIndex].problems.length === 0 ||
-                !allData[currentSectionIndex].problems[currentProblemIndex] ||
-                !allData[currentSectionIndex].problems[currentProblemIndex].questions || allData[currentSectionIndex].problems[currentProblemIndex].questions.length === 0 ||
-                !allData[currentSectionIndex].problems[currentProblemIndex].questions[currentQuestionIndex]) {
+             // Data structure validation (same)
+             if (!allData || allData.length === 0 || !allData[currentSectionIndex] || /* ... more checks ... */ !allData[currentSectionIndex].problems[currentProblemIndex].questions[currentQuestionIndex]) {
                 console.error("Data structure validation failed in loadQuestion.");
                 showError("Error: Cannot find the specified question in the data structure.");
                 return;
             }
             console.log("Data structure validation passed.");
-
             const section = allData[currentSectionIndex];
             const problem = section.problems[currentProblemIndex];
             const question = problem.questions[currentQuestionIndex];
@@ -136,23 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             sectionTitleEl.textContent = section.sectionTitle || 'Unnamed Section';
             problemTitleEl.textContent = problem.problemTitle || 'Unnamed Problem';
-
-            // Clean and set question text
             const cleanedQuestionText = (question.questionText || 'No question text provided.').replace(citationRegex, '');
             questionTextEl.textContent = cleanedQuestionText;
-
-            // Reset hints display
             hintsContainerEl.innerHTML = '<p>Hints will appear here when requested.</p>';
             currentHintIndex = -1;
             showHintBtn.disabled = !question.hints || question.hints.length === 0;
             showHintBtn.textContent = "Show Hint";
             console.log("DOM elements updated with text content.");
 
-            // Typeset content
             console.log("Calling typesetElement for question text.");
             typesetElement(questionTextEl)
-                .then(() => console.log("Question text typesetting completed or skipped.")) // Clarified log
-                .catch(err => console.error("Error during question typesetting (should have been caught in helper):", err)); // Less likely now
+                .then(() => console.log("Question text typesetting completed or skipped."))
+                .catch(err => console.error("Error during question typesetting:", err));
 
             updateNavigation();
             console.log("loadQuestion finished.");
@@ -163,8 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Other Functions (showHint, updateNavigation, navigate, showError) ---
-    // Keep them the same as the previous version (using the simplified typesetElement in showHint)
+    // (Keep other functions: showHint, updateNavigation, navigate, showError the same as last version)
      function showHint() {
         const hints = allData[currentSectionIndex]?.problems?.[currentProblemIndex]?.questions?.[currentQuestionIndex]?.hints;
         if (!hints || hints.length === 0) { return; }
