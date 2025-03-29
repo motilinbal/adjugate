@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Content Loaded. Script starting."); // LOG 1
 
+    // --- Create a manual promise for true MathJax readiness ---
+    let mathJaxManualResolve;
+    const mathJaxFullyReadyPromise = new Promise(resolve => {
+        mathJaxManualResolve = resolve;
+    });
+    console.log("Manual MathJax readiness promise created."); // LOG ManualPromise
+
     // **** MATHJAX CONFIGURATION OBJECT with ALL MACROS ****
     window.MathJax = {
       tex: {
@@ -19,8 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       startup: {
           ready: () => {
-            console.log('MathJax is ready via config.'); // Log when ready callback fires
-            MathJax.startup.defaultReady();
+            console.log('MathJax is ready via config -> Resolving manual promise.'); // LOG ReadyCallback
+            MathJax.startup.defaultReady(); // Default readiness processing
+            mathJaxManualResolve(); // Resolve OUR promise signaling full readiness
           }
       }
     };
@@ -66,17 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
             throw err; // Re-throw
         });
 
-    // --- Initialize After BOTH Fetch and MathJax Ready ---
-    console.log("Setting up Promise.all."); // LOG 7
-    Promise.all([fetchData, MathJax.startup.promise])
+    // --- Initialize After BOTH Fetch and MathJax FULLY Ready ---
+    console.log("Setting up Promise.all, waiting for fetch and MANUAL MathJax readiness."); // LOG 7
+    // **** MODIFIED: Wait for mathJaxFullyReadyPromise ****
+    Promise.all([fetchData, mathJaxFullyReadyPromise])
         .then(() => {
-            console.log("Promise.all resolved (fetchData & MathJax ready). Calling loadQuestion..."); // LOG 8
+            // We only get here if BOTH fetchData resolved AND our manual promise resolved (via ready callback)
+            console.log("Promise.all resolved (fetchData & MathJax FULLY ready). Calling loadQuestion..."); // LOG 8
             loadQuestion();
         })
         .catch(error => {
+            // This should now primarily catch errors from fetchData
             console.error('Initialization failed (Promise.all rejected):', error); // LOG 9
             let specificError = error instanceof Error ? error.message : String(error);
-            if (String(specificError).includes("MathJax")) { // Check if error message contains MathJax
+            // Less likely to be MathJax now, but check just in case config itself failed
+            if (String(specificError).includes("MathJax")) {
                  showError(`Initialization failed: MathJax could not start. Check console. ${specificError}`);
             } else {
                  showError(`Initialization failed: Could not load data or start MathJax. Check console. ${specificError}`);
@@ -85,22 +97,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- Functions ---
+    // Keep the simplified typesetElement from the previous attempt
     function typesetElement(element) {
-        console.log("typesetElement called for:", element); // Log entry
-        // Assume MathJax is ready because Promise.all waited for MathJax.startup.promise
-        // Check if the typesetPromise function itself exists and is callable
+        console.log("typesetElement called for:", element);
+        // Assume MathJax is fully ready because Promise.all waited for the ready() callback.
         if (typeof MathJax !== 'undefined' && typeof MathJax.typesetPromise === 'function') {
-            console.log("MathJax.typesetPromise function found, calling it."); // Log success path
-            // Call typesetPromise directly
+            console.log("MathJax.typesetPromise function found, calling it.");
             return MathJax.typesetPromise([element]).catch((err) => {
-                // Log errors specifically from typesetting
                 console.error('MathJax typesetting execution error:', err);
-                return Promise.resolve(); // Resolve anyway to avoid breaking chains
+                return Promise.resolve();
             });
         } else {
-            // This case would be unexpected if Promise.all worked, but good to have
-            console.error("MathJax.typesetPromise function not available when typesetElement was called.");
-            // Return a resolved promise to avoid breaking potential downstream chains
+            console.error("MathJax.typesetPromise function not available when typesetElement was called (unexpected).");
             return Promise.resolve();
         }
     }
@@ -109,22 +117,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadQuestion() {
         console.log("loadQuestion called."); // LOG 10
         try {
-            // Data structure validation
-            if (!allData || allData.length === 0 || !allData[currentSectionIndex] ||
+            // Data structure validation (same)
+             if (!allData || allData.length === 0 || !allData[currentSectionIndex] ||
                 !allData[currentSectionIndex].problems || allData[currentSectionIndex].problems.length === 0 ||
                 !allData[currentSectionIndex].problems[currentProblemIndex] ||
                 !allData[currentSectionIndex].problems[currentProblemIndex].questions || allData[currentSectionIndex].problems[currentProblemIndex].questions.length === 0 ||
                 !allData[currentSectionIndex].problems[currentProblemIndex].questions[currentQuestionIndex]) {
-                console.error("Data structure validation failed in loadQuestion."); // LOG 11
+                console.error("Data structure validation failed in loadQuestion.");
                 showError("Error: Cannot find the specified question in the data structure.");
                 return;
             }
-            console.log("Data structure validation passed."); // LOG 12
+            console.log("Data structure validation passed.");
 
             const section = allData[currentSectionIndex];
             const problem = section.problems[currentProblemIndex];
             const question = problem.questions[currentQuestionIndex];
-            console.log("Current Question ID:", question.questionId); // LOG 13
+            console.log("Current Question ID:", question.questionId);
 
             sectionTitleEl.textContent = section.sectionTitle || 'Unnamed Section';
             problemTitleEl.textContent = problem.problemTitle || 'Unnamed Problem';
@@ -138,45 +146,42 @@ document.addEventListener('DOMContentLoaded', () => {
             currentHintIndex = -1;
             showHintBtn.disabled = !question.hints || question.hints.length === 0;
             showHintBtn.textContent = "Show Hint";
-            console.log("DOM elements updated with text content."); // LOG 14
+            console.log("DOM elements updated with text content.");
 
             // Typeset content
-            console.log("Calling typesetElement for question text."); // LOG 15
+            console.log("Calling typesetElement for question text.");
             typesetElement(questionTextEl)
-                .then(() => console.log("Question text typesetting attempted.")) // LOG 16
-                .catch(err => console.error("Error during question typesetting:", err)); // Should be caught by helper
+                .then(() => console.log("Question text typesetting completed or skipped.")) // Clarified log
+                .catch(err => console.error("Error during question typesetting (should have been caught in helper):", err)); // Less likely now
 
             updateNavigation();
-            console.log("loadQuestion finished."); // LOG 17
+            console.log("loadQuestion finished.");
 
         } catch (error) {
-            console.error("Error inside loadQuestion function:", error); // LOG 18
+            console.error("Error inside loadQuestion function:", error);
             showError(`Error loading question content. ${error.message}`);
         }
     }
 
-    function showHint() {
+    // --- Other Functions (showHint, updateNavigation, navigate, showError) ---
+    // Keep them the same as the previous version (using the simplified typesetElement in showHint)
+     function showHint() {
         const hints = allData[currentSectionIndex]?.problems?.[currentProblemIndex]?.questions?.[currentQuestionIndex]?.hints;
         if (!hints || hints.length === 0) { return; }
         currentHintIndex++;
         if (currentHintIndex === 0) { hintsContainerEl.innerHTML = ''; }
-
         if (currentHintIndex < hints.length) {
             const hint = hints[currentHintIndex];
             const hintElement = document.createElement('div');
             hintElement.classList.add('hint');
-
-            // Clean and set hint text
             const cleanedHintText = (hint.hintText || 'Hint text missing.').replace(citationRegex, '');
             hintElement.textContent = cleanedHintText;
-
             hintsContainerEl.appendChild(hintElement);
             console.log("Calling typesetElement for hint text.");
             typesetElement(hintElement)
-                .then(() => console.log("Hint text typesetting attempted."))
+                .then(() => console.log("Hint text typesetting completed or skipped."))
                 .catch(err => console.error("Error during hint typesetting:", err));
         }
-
         if (currentHintIndex >= hints.length - 1) {
             showHintBtn.disabled = true;
              showHintBtn.textContent = "All Hints Shown";
@@ -187,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalSections = allData.length;
         const totalProblemsInSection = allData[currentSectionIndex]?.problems?.length || 0;
         const totalQuestionsInProblem = allData[currentSectionIndex]?.problems?.[currentProblemIndex]?.questions?.length || 0;
-        progressIndicatorEl.textContent = `S: <span class="math-inline">\{currentSectionIndex \+ 1\}/</span>{totalSections} | P: <span class="math-inline">\{currentProblemIndex \+ 1\}/</span>{totalProblemsInSection} | Q: <span class="math-inline">\{currentQuestionIndex \+ 1\}/</span>{totalQuestionsInProblem}`;
+        progressIndicatorEl.textContent = `S: ${currentSectionIndex + 1}/${totalSections} | P: ${currentProblemIndex + 1}/${totalProblemsInSection} | Q: ${currentQuestionIndex + 1}/${totalQuestionsInProblem}`;
         prevBtn.disabled = (currentSectionIndex === 0 && currentProblemIndex === 0 && currentQuestionIndex === 0);
         const isLastQuestion = currentSectionIndex === totalSections - 1 &&
                               currentProblemIndex === totalProblemsInSection - 1 &&
@@ -196,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
      function navigate(direction) {
-         console.log(`Maps called with direction: ${direction}`); // LOG Nav
+         console.log(`Maps called with direction: ${direction}`);
         const section = allData[currentSectionIndex];
          if (!section || !section.problems || section.problems.length === 0) { console.error("Cannot navigate, invalid section data."); return; }
          const problem = section.problems[currentProblemIndex];
@@ -204,4 +209,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (direction === 'next') {
             if (currentQuestionIndex < problem.questions.length - 1) { currentQuestionIndex++; }
-            else if (currentProblemIndex < section.problems.length - 1) { currentProblemIndex
+            else if (currentProblemIndex < section.problems.length - 1) { currentProblemIndex++; currentQuestionIndex = 0; }
+            else if (currentSectionIndex < allData.length - 1) { currentSectionIndex++; currentProblemIndex = 0; currentQuestionIndex = 0; }
+            else { return; }
+        } else if (direction === 'prev') {
+             if (currentQuestionIndex > 0) { currentQuestionIndex--; }
+             else if (currentProblemIndex > 0) {
+                currentProblemIndex--;
+                 if (allData[currentSectionIndex]?.problems?.[currentProblemIndex]?.questions) {
+                     currentQuestionIndex = allData[currentSectionIndex].problems[currentProblemIndex].questions.length - 1;
+                 } else { currentQuestionIndex = 0; console.error("Previous problem has no questions array."); }
+            } else if (currentSectionIndex > 0) {
+                currentSectionIndex--;
+                 if (allData[currentSectionIndex]?.problems) {
+                      currentProblemIndex = allData[currentSectionIndex].problems.length - 1;
+                      if (allData[currentSectionIndex]?.problems?.[currentProblemIndex]?.questions) {
+                          currentQuestionIndex = allData[currentSectionIndex].problems[currentProblemIndex].questions.length - 1;
+                      } else { currentQuestionIndex = 0; console.error("Previous problem in previous section has no questions array."); }
+                 } else { currentProblemIndex = 0; currentQuestionIndex = 0; console.error("Previous section has no problems array."); }
+            } else { return; }
+        }
+        loadQuestion();
+    }
+
+    function showError(message) {
+        console.error("showError called with message:", message);
+        sectionTitleEl.textContent = "Error";
+        problemTitleEl.textContent = "";
+        questionTextEl.innerHTML = `<p style="color: red; font-weight: bold;">${message}</p>`;
+        hintsContainerEl.innerHTML = '';
+        showHintBtn.disabled = true;
+        nextBtn.disabled = true;
+        prevBtn.disabled = true;
+    }
+
+    // --- Event Listeners ---
+    showHintBtn.addEventListener('click', showHint);
+    nextBtn.addEventListener('click', () => navigate('next'));
+    prevBtn.addEventListener('click', () => navigate('prev'));
+    console.log("Event listeners added."); // LOG 19
+
+}); // End DOMContentLoaded
